@@ -1,0 +1,42 @@
+.cinema-off {
+    display: none;
+}
+
+.cinema-on {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: var(--color-primary3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        content: '';
+        background-color: rgba(161, 136, 239, 0.5);
+    }
+
+    & > button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: var(--color-primary1);
+
+        & svg {
+            stroke-width: 5px;
+        }
+    }
+
+    & > iframe {
+        position: relative;
+        width: 95%;
+        height: 80%;
+    }
+}

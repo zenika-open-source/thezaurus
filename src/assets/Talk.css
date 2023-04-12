@@ -1,0 +1,41 @@
+.talk {
+
+    & header {
+        & ul.list-format {
+            list-style: none;
+        }
+
+        & aside {
+            color: var(--color-primary3);
+            background-color: var(--color-secondary1);
+
+        }
+    }
+
+    & section {
+
+        & h3 {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            color: var(--color-secondary3);
+        }
+
+        & button {
+            background-color: var(--color-secondary2);
+            color: var(--color-primary3);
+         
+            &:hover {
+                &::after {
+                    position: absolute;
+                    content: '';
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: rgba(255, 255, 255, 0.2);
+                }
+            }
+        }
+    }
+
+}
