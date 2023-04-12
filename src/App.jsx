@@ -7,7 +7,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Talks from "./features/talks/Talks";
 
 function App() {
-  const { isAuthenticated, logout, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, logout, loginWithRedirect, user } = useAuth0();
+
+  const isLogged = isAuthenticated && user?.email?.endsWith("@zenika.com");
 
   return (
     <main className="flex flex-col h-full">
@@ -50,7 +52,7 @@ function App() {
           {isAuthenticated ? "Se déconnecter" : "Se connecter"}
         </button>
       </section>
-      {isAuthenticated ? <Talks /> : ""}
+      {isLogged ? <Talks /> : ""}
       <footer className="text-xs text-center py-2 border-t">
         <p>
           Note : la liste des catégories est tirée de la liste officielle des{" "}
