@@ -27,7 +27,7 @@
         position: absolute;
         top: 10px;
         right: 10px;
-        color: var(--color-primary1);
+        color: var(--color-primary3);
 
         & svg {
             stroke-width: 5px;
