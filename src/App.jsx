@@ -1,46 +1,13 @@
 import zenikaLogo from "/zenika.svg";
 import "./App.css";
 
-import Talk from "./assets/Talk";
 import IconPublic from "./assets/icons/Public";
 import { Cinema } from "./features/cinema/Cinema";
 import { useAuth0 } from "@auth0/auth0-react";
+import Talks from "./features/talks/Talks";
 
 function App() {
-  const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
-
-  const talks = [
-    {
-      event: "TZ Lyon",
-      date: "04/2022",
-      format: "video".split(","),
-      title: "Kanye West, Maths and Signals ! How to clone Shazam",
-      link: "https://youtube.com/embed/lzKtUqVxIbc",
-      author: "Moustapha Agack",
-      ressource: "alien",
-    },
-    {
-      event: "TZ Paris",
-      date: "12/2022",
-      format: "video".split(","),
-      title:
-        "15 minutes pour connaitre 15+ caractères chinois + 15 minutes pour apprendre la base de la langue chinoise",
-      link: "https://drive.google.com/file/d/1UkQlYAWjxOaMJ85WKuLRh_CwKzr4E-A2/view",
-      author: "Yue Gao",
-      ressource: "alien",
-    },
-  ].map((t, i) => (
-    <Talk
-      key={`talk_${i}`}
-      event={t.event}
-      date={t.date}
-      format={t.format}
-      title={t.title}
-      author={t.author}
-      link={t.link}
-      ressource={t.ressource}
-    />
-  ));
+  const { isAuthenticated, logout, loginWithRedirect } = useAuth0();
 
   return (
     <main className="flex flex-col h-full">
@@ -72,24 +39,18 @@ function App() {
           adapté à toutes les populations 🤔🧌 Si vous avez mieux comme outils,
           n'hésitez pas 😄
         </p>
+        <button
+          className="connexion h-10 w-40 rounded-lg px-4 m-4"
+          onClick={() =>
+            isAuthenticated
+              ? logout({ logoutParams: { returnTo: window.location.origin } })
+              : loginWithRedirect()
+          }
+        >
+          {isAuthenticated ? "Se déconnecter" : "Se connecter"}
+        </button>
       </section>
-      <h2 className="text-center">
-        Collection des médias disponibles au sein de Zenika, pour utilisation
-        interne
-      </h2>
-      <section className="flex m-5 flex-grow items-stretch justify-center">
-        {isAuthenticated ? (
-          talks
-        ) : (
-          <button
-            className="connexion h-10 flex items-center rounded-lg px-4"
-            onClick={() => loginWithRedirect()}
-          >
-            Se connecter
-          </button>
-        )}
-      </section>
-
+      {isAuthenticated ? <Talks /> : ""}
       <footer className="text-xs text-center py-2 border-t">
         <p>
           Note : la liste des catégories est tirée de la liste officielle des{" "}
