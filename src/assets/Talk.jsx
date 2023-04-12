@@ -48,7 +48,11 @@ function Talk(props) {
         <button
           className="m-2 flex items-center justify-center rounded-md w-10 h-10 absolute bottom-0 right-0"
           title="Voir le talk"
-          onClick={() => dispatch(defineLink(props.link))}
+          onClick={() => {
+            props.link.indexOf("youtu") !== -1
+              ? dispatch(defineLink(props.link))
+              : window.open(props.link, "_blank");
+          }}
         >
           <IconView />
         </button>
