@@ -4,8 +4,11 @@ import "./App.css";
 import Talk from "./assets/Talk";
 import IconPublic from "./assets/icons/Public";
 import { Cinema } from "./features/cinema/Cinema";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
+  const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+
   const talks = [
     {
       event: "TZ Lyon",
@@ -75,7 +78,16 @@ function App() {
         interne
       </h2>
       <section className="flex m-5 flex-grow items-stretch justify-center">
-        {talks}
+        {isAuthenticated ? (
+          talks
+        ) : (
+          <button
+            className="connexion h-10 flex items-center rounded-lg px-4"
+            onClick={() => loginWithRedirect()}
+          >
+            Se connecter
+          </button>
+        )}
       </section>
 
       <footer className="text-xs text-center py-2 border-t">
