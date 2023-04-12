@@ -13,6 +13,7 @@ h2 {
 
 .jumbo {
     background-color: var(--color-primary4);
+    color: var(--color-primary2);
 }
 
 .description svg {

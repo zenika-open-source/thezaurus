@@ -6,6 +6,28 @@ import IconPublic from "./assets/icons/Public";
 import { Cinema } from "./features/cinema/Cinema";
 
 function App() {
+  const talks = [
+    {
+      event: "TZ Lyon",
+      date: "04/2022",
+      format: "video".split(","),
+      title: "Kanye West, Maths and Signals ! How to clone Shazam",
+      link: "https://youtube.com/embed/lzKtUqVxIbc",
+      author: "Moustapha Agack",
+      ressource: "alien",
+    },
+  ].map((t) => (
+    <Talk
+      event={t.event}
+      date={t.date}
+      format={t.format}
+      title={t.title}
+      author={t.author}
+      link={t.link}
+      ressource={t.ressource}
+    />
+  ));
+
   return (
     <main className="flex flex-col h-full">
       <header className="border-b">
@@ -41,16 +63,8 @@ function App() {
         Collection des médias disponibles au sein de Zenika, pour utilisation
         interne
       </h2>
-      <section className="grid gap-3 m-5 flex-grow">
-        <Talk
-          event="TZ Lyon"
-          date="04/2022"
-          format={["video"]}
-          title="Kanye West, Maths and Signals ! How to clone Shazam"
-          link="https://youtube.com/embed/lzKtUqVxIbc"
-          author="Moustapha Agack"
-          ressource="alien"
-        />
+      <section className="flex m-5 flex-grow items-stretch justify-center">
+        {talks}
       </section>
 
       <footer className="text-xs text-center py-2 border-t">
