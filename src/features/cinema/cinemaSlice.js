@@ -7,9 +7,6 @@ export const cinemaSlice = createSlice({
     link: "",
   },
   reducers: {
-    show: (state) => {
-      state.visible = true;
-    },
     hide: (state) => {
       state.visible = false;
       state.link = "";
@@ -21,6 +18,6 @@ export const cinemaSlice = createSlice({
   },
 });
 
-export const { show, hide, defineLink } = cinemaSlice.actions;
+export const { hide, defineLink } = cinemaSlice.actions;
 
 export default cinemaSlice.reducer;
