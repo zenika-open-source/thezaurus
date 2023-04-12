@@ -11,7 +11,7 @@ h2 {
     font-weight: 600;
 }
 
-.jumbo {
+.jumbo, main > footer {
     background-color: var(--color-primary4);
     color: var(--color-primary2);
 }

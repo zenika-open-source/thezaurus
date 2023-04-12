@@ -16,8 +16,19 @@ function App() {
       author: "Moustapha Agack",
       ressource: "alien",
     },
-  ].map((t) => (
+    {
+      event: "TZ Paris",
+      date: "12/2022",
+      format: "video".split(","),
+      title:
+        "15 minutes pour connaitre 15+ caractères chinois + 15 minutes pour apprendre la base de la langue chinoise",
+      link: "https://drive.google.com/file/d/1UkQlYAWjxOaMJ85WKuLRh_CwKzr4E-A2/view",
+      author: "Yue Gao",
+      ressource: "alien",
+    },
+  ].map((t, i) => (
     <Talk
+      key={`talk_${i}`}
       event={t.event}
       date={t.date}
       format={t.format}
