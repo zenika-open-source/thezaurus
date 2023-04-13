@@ -25,3 +25,12 @@ If you have just `npm`
 npm install
 npm run dev
 ```
+
+## `.env` file
+
+Create a `.env` file in the root directory, then put this data:
+
+```env
+VITE_GOOGLE_API_KEY = /* A TOKEN GOOGLE */
+VITE_GOOGLE_DOC_ID = /* THE GOOGLE SHEETS ID */
+```
