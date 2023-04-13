@@ -1,7 +1,6 @@
 import zenikaLogo from "/zenika.svg";
 import "./App.css";
 
-import { Cinema } from "./features/cinema/Cinema";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import Talks from "./features/talks/Talks";
 import IconPublic from "./features/icons/Public";
@@ -80,7 +79,6 @@ function App() {
               </a>
             </p>
           </footer>
-          <Cinema />
         </>
       ) : (
         ""
