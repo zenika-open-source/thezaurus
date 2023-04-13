@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { hide } from "./cinemaSlice";
-import IconCross from "../../assets/icons/Cross";
 import "./Cinema.css";
+import IconCross from "../icons/Cross";
 
 export function Cinema() {
   const visible = useSelector((state) => state.cinema.visible);

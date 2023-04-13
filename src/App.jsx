@@ -1,10 +1,10 @@
 import zenikaLogo from "/zenika.svg";
 import "./App.css";
 
-import IconPublic from "./assets/icons/Public";
 import { Cinema } from "./features/cinema/Cinema";
 import { useAuth0 } from "@auth0/auth0-react";
 import Talks from "./features/talks/Talks";
+import IconPublic from "./features/icons/Public";
 
 function App() {
   const { isAuthenticated, logout, loginWithRedirect, user } = useAuth0();

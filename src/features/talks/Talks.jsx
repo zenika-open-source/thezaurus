@@ -1,38 +1,107 @@
-import Talk from "../../assets/Talk";
+import { useState, useEffect } from "react";
+import Select from "react-select";
+import Talk from "./Talk";
 
 function Talks() {
-  const talks = [
-    {
-      event: "TZ Lyon",
-      date: "04/2022",
-      format: "video".split(","),
-      title: "Kanye West, Maths and Signals ! How to clone Shazam",
-      link: "https://youtube.com/embed/lzKtUqVxIbc",
-      author: "Moustapha Agack",
-      ressource: "alien",
-    },
-    {
-      event: "TZ Paris",
-      date: "12/2022",
-      format: "video".split(","),
-      title:
-        "15 minutes pour connaitre 15+ caractères chinois + 15 minutes pour apprendre la base de la langue chinoise",
-      link: "https://drive.google.com/file/d/1UkQlYAWjxOaMJ85WKuLRh_CwKzr4E-A2/view",
-      author: "Yue Gao",
-      ressource: "alien",
-    },
-  ].map((t, i) => (
-    <Talk
-      key={`talk_${i}`}
-      event={t.event}
-      date={t.date}
-      format={t.format}
-      title={t.title}
-      author={t.author}
-      link={t.link}
-      ressource={t.ressource}
-    />
-  ));
+  const [filterEvent, setFilterEvent] = useState([]);
+  const [filterFormat, setFilterFormat] = useState([]);
+  const [filterAuthor, setFilterAuthor] = useState([]);
+  const [filterRessource, setFilterRessource] = useState([]);
+  const [talks, setTalks] = useState([]);
+  const [filteredTalks, setFilteredTalks] = useState([]);
+
+  const transformToSelectOptions = (a) =>
+    [...new Set(a)].map((v) => {
+      return { value: v, label: v };
+    });
+
+  const cleanSelectedValues = (e) =>
+    Array.isArray(e) ? e.map((x) => x.value) : [];
+
+  useEffect(() => {
+    fetch("/talks.json")
+      .then((response) => response.json())
+      .then((response) => {
+        let events = [];
+        let formats = [];
+        let authors = [];
+        let ressources = [];
+        response.map((talk) => {
+          events.push(talk.event);
+          formats.push(talk.format);
+          authors.push(talk.author);
+          ressources.push(talk.ressource);
+        });
+        setFilterEvent(transformToSelectOptions(events));
+        setFilterFormat(transformToSelectOptions(formats));
+        setFilterAuthor(transformToSelectOptions(authors));
+        setFilterRessource(transformToSelectOptions(ressources));
+        setTalks(response);
+      });
+  }, []);
+
+  const [selectedFilterEvent, setSelectedFilterEvent] = useState([]);
+  const handleFilterEventChange = (e) => {
+    setSelectedFilterEvent(cleanSelectedValues(e));
+  };
+  const [selectedFilterFormat, setSelectedFilterFormat] = useState([]);
+  const handleFilterFormatChange = (e) => {
+    setSelectedFilterFormat(cleanSelectedValues(e));
+  };
+  const [selectedFilterAuthor, setSelectedFilterAuthor] = useState([]);
+  const handleFilterAuthorChange = (e) => {
+    setSelectedFilterAuthor(cleanSelectedValues(e));
+  };
+  const [selectedFilterRessource, setSelectedFilterRessource] = useState([]);
+  const handleFilterRessourceChange = (e) => {
+    setSelectedFilterRessource(cleanSelectedValues(e));
+  };
+  const [selectedFilterTitle, setSelectedFilterTitle] = useState("");
+  const handleFilterTitleInput = (e) => {
+    setSelectedFilterTitle(e.target.value);
+  };
+
+  const hasValue = (values, obj, prop) => {
+    let found = false;
+    values.forEach((v) => {
+      if (obj[prop].toLowerCase().indexOf(v.toLowerCase()) !== -1) found = true;
+    });
+    return found;
+  };
+
+  useEffect(() => {
+    // filters management
+    let _filtered = talks;
+    if (selectedFilterTitle.length)
+      _filtered = _filtered.filter(
+        (t) =>
+          t.title.toLowerCase().indexOf(selectedFilterTitle.toLowerCase()) !==
+          -1
+      );
+    if (selectedFilterAuthor.length)
+      _filtered = _filtered.filter((t) =>
+        hasValue(selectedFilterAuthor, t, "author")
+      );
+    if (selectedFilterEvent.length)
+      _filtered = _filtered.filter((t) =>
+        hasValue(selectedFilterEvent, t, "event")
+      );
+    if (selectedFilterFormat.length)
+      _filtered = _filtered.filter((t) =>
+        hasValue(selectedFilterFormat, t, "format")
+      );
+    if (selectedFilterRessource.length)
+      _filtered = _filtered.filter((t) =>
+        hasValue(selectedFilterRessource, t, "ressource")
+      );
+    setFilteredTalks(_filtered);
+  }, [
+    selectedFilterTitle,
+    selectedFilterAuthor,
+    selectedFilterEvent,
+    selectedFilterFormat,
+    selectedFilterRessource,
+  ]);
 
   return (
     <>
@@ -40,8 +109,67 @@ function Talks() {
         Collection des médias disponibles au sein de Zenika, pour utilisation
         interne
       </h2>
+      <form className="flex items-center justify-center">
+        <label className="mx-2">
+          Event(s) :{" "}
+          <Select
+            options={filterEvent}
+            isMulti
+            isSearchable
+            onChange={handleFilterEventChange}
+          />
+        </label>
+        <label className="mx-2">
+          Format(s) :{" "}
+          <Select
+            options={filterFormat}
+            isMulti
+            isSearchable
+            onChange={handleFilterFormatChange}
+          />
+        </label>
+        <label className="mx-2">
+          Auteur(s) :{" "}
+          <Select
+            options={filterAuthor}
+            isMulti
+            isSearchable
+            onChange={handleFilterAuthorChange}
+          />
+        </label>
+        <label className="mx-2">
+          Ressource(s) :
+          <Select
+            options={filterRessource}
+            isMulti
+            isSearchable
+            onChange={handleFilterRessourceChange}
+          />
+        </label>
+        <label className="mx-2">
+          Titre :
+          <input
+            type="text"
+            className="block border h-10 w-96 rounded-md px-2"
+            onInput={handleFilterTitleInput}
+          />
+        </label>
+      </form>
       <section className="flex m-5 flex-grow items-stretch justify-center">
-        {talks}
+        {filteredTalks.map((talk, i) => {
+          return (
+            <Talk
+              key={`talk_${i}`}
+              event={talk.event}
+              date={talk.date}
+              format={talk.format.split(",")}
+              title={talk.title}
+              author={talk.author}
+              link={talk.link}
+              ressource={talk.ressource}
+            />
+          );
+        })}
       </section>
     </>
   );

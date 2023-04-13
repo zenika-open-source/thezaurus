@@ -1,13 +1,13 @@
-import IconFormation from "./icons/Formation";
-import IconPublic from "./icons/Public";
-import IconTalk from "./icons/Talk";
-import IconVideo from "./icons/Video";
-import IconView from "./icons/View";
+import IconFormation from "../icons/Formation";
+import IconPublic from "../icons/Public";
+import IconTalk from "../icons/Talk";
+import IconVideo from "../icons/Video";
+import IconView from "../icons/View";
 
 import "./Talk.css";
 
 import { useDispatch } from "react-redux";
-import { defineLink } from "../features/cinema/cinemaSlice";
+import { defineLink } from "../cinema/cinemaSlice";
 
 function Talk(props) {
   const { format } = props;
