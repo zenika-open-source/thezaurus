@@ -31,7 +31,9 @@ function Talk(props) {
     ),
   };
   const listFormat = format.map((f) => (
-    <li key={f.toString()}>{emojiFormat[f] || IconTalk}</li>
+    <li key={f.toString()} className="mx-1">
+      {emojiFormat[f] || IconTalk}
+    </li>
   ));
 
   return (
@@ -41,7 +43,7 @@ function Talk(props) {
           {props.event} | {props.date}
         </span>
         <aside className="text-sm px-2 py-1 rounded-bl-md rounded-tr-lg">
-          <ul className="list-format">{listFormat}</ul>
+          <ul className="list-format flex flex-row">{listFormat}</ul>
         </aside>
       </header>
       <section className="flex-grow px-4 py-2 relative">

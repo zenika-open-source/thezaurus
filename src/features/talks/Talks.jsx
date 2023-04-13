@@ -88,7 +88,7 @@ function Talks() {
     let ressources = [];
     json.map((talk) => {
       events.push(talk.event);
-      formats.push(talk.format);
+      talk.format.split(",").map((f) => formats.push(f));
       authors.push(talk.author);
       ressources.push(talk.ressource);
     });
