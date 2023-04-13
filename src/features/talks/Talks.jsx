@@ -81,26 +81,30 @@ function Talks() {
     selectedFilterRessource,
   ]);
 
+  const jsonTalksToStates = (json) => {
+    let events = [];
+    let formats = [];
+    let authors = [];
+    let ressources = [];
+    json.map((talk) => {
+      events.push(talk.event);
+      formats.push(talk.format);
+      authors.push(talk.author);
+      ressources.push(talk.ressource);
+    });
+    setFilterEvent(transformToSelectOptions(events));
+    setFilterFormat(transformToSelectOptions(formats));
+    setFilterAuthor(transformToSelectOptions(authors));
+    setFilterRessource(transformToSelectOptions(ressources));
+    setTalks(json);
+    setFilteredTalks(json);
+  };
+
   useEffect(() => {
     fetch("/talks.json")
       .then((response) => response.json())
       .then((response) => {
-        let events = [];
-        let formats = [];
-        let authors = [];
-        let ressources = [];
-        response.map((talk) => {
-          events.push(talk.event);
-          formats.push(talk.format);
-          authors.push(talk.author);
-          ressources.push(talk.ressource);
-        });
-        setFilterEvent(transformToSelectOptions(events));
-        setFilterFormat(transformToSelectOptions(formats));
-        setFilterAuthor(transformToSelectOptions(authors));
-        setFilterRessource(transformToSelectOptions(ressources));
-        setTalks(response);
-        setFilteredTalks(response);
+        jsonTalksToStates(response);
       });
   }, []);
 
