@@ -89,7 +89,7 @@ function Talks() {
     json.map((talk) => {
       events.push(talk.event);
       talk.format.split(",").map((f) => formats.push(f.trim()));
-      authors.push(talk.author);
+      talk.author.split(",").map((f) => authors.push(f.trim()));
       ressources.push(talk.ressource);
     });
     setFilterEvent(transformToSelectOptions(events));
@@ -101,10 +101,24 @@ function Talks() {
   };
 
   useEffect(() => {
-    fetch("/talks.json")
+    const gsheet = `https://sheets.googleapis.com/v4/spreadsheets/${
+      import.meta.env.VITE_GOOGLE_DOC_ID
+    }/values/A:G?key=${import.meta.env.VITE_GOOGLE_API_KEY}`;
+
+    fetch(gsheet)
       .then((response) => response.json())
       .then((response) => {
-        jsonTalksToStates(response);
+        // format gdocs to talk JSON
+        const headers = response.values[0];
+        const _talks = [];
+        response.values.map((value, i) => {
+          if (i > 0) {
+            const talk = {};
+            value.map((v, j) => (talk[headers[j]] = v));
+            _talks.push(talk);
+          }
+        });
+        jsonTalksToStates(_talks);
       });
   }, []);
 
@@ -167,7 +181,7 @@ function Talks() {
               key={`talk_${i}`}
               event={talk.event}
               date={talk.date}
-              format={talk.format.split(",")}
+              format={talk.format.split(",").map((v) => v.trim())}
               title={talk.title}
               author={talk.author}
               link={talk.link}

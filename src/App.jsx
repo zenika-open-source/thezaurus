@@ -11,6 +11,8 @@ function App() {
 
   const isLogged = isAuthenticated && user?.email?.endsWith("@zenika.com");
 
+  if (!isLogged) logout({ logoutParams: { returnTo: window.location.origin } });
+
   return (
     <main className="flex flex-col h-full">
       <header className="border-b">
