@@ -78,12 +78,11 @@ function App() {
               </a>
             </p>
           </footer>
+          <Cinema />
         </>
       ) : (
         ""
       )}
-
-      <Cinema />
     </main>
   );
 }
