@@ -88,7 +88,7 @@ function Talks() {
     let ressources = [];
     json.map((talk) => {
       events.push(talk.event);
-      talk.format.split(",").map((f) => formats.push(f));
+      talk.format.split(",").map((f) => formats.push(f.trim()));
       authors.push(talk.author);
       ressources.push(talk.ressource);
     });
@@ -114,8 +114,8 @@ function Talks() {
         Collection des médias disponibles au sein de Zenika, pour utilisation
         interne
       </h2>
-      <form className="flex items-center justify-center">
-        <label className="mx-2">
+      <form className="grid grid-cols-1 gap-3 text-xs my-4 px-2 md:mx-auto w-full md:max-w-7xl md:grid-cols-4">
+        <label>
           Event(s) :{" "}
           <Select
             options={filterEvent}
@@ -124,7 +124,7 @@ function Talks() {
             onChange={handleFilterEventChange}
           />
         </label>
-        <label className="mx-2">
+        <label>
           Format(s) :{" "}
           <Select
             options={filterFormat}
@@ -133,7 +133,7 @@ function Talks() {
             onChange={handleFilterFormatChange}
           />
         </label>
-        <label className="mx-2">
+        <label>
           Auteur(s) :{" "}
           <Select
             options={filterAuthor}
@@ -142,7 +142,7 @@ function Talks() {
             onChange={handleFilterAuthorChange}
           />
         </label>
-        <label className="mx-2">
+        <label>
           Ressource(s) :
           <Select
             options={filterRessource}
@@ -151,16 +151,16 @@ function Talks() {
             onChange={handleFilterRessourceChange}
           />
         </label>
-        <label className="mx-2">
+        <label className="md:col-span-4">
           Titre :
           <input
             type="text"
-            className="block border h-10 w-96 rounded-md px-2"
+            className="block border h-10 rounded-md px-2 w-full"
             onInput={handleFilterTitleInput}
           />
         </label>
       </form>
-      <section className="flex m-5 flex-grow items-stretch justify-center">
+      <section className="flex-grow flex items-stretch justify-center pb-4 flex-col md:flex-row">
         {filteredTalks.map((talk, i) => {
           return (
             <Talk

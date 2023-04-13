@@ -23,7 +23,7 @@ function App() {
       <p className="jumbo text-center py-2 border-b">
         Librairie de formation interne Zenika
       </p>
-      <section className="description text-center text-sm py-3">
+      <section className="description text-center text-sm py-3 px-2">
         <p>
           Listing de support d'upskilling pour les consultants Zenika. Ces
           médias sont des productions internes, et ne doivent pas être diffusées
