@@ -2,7 +2,7 @@ import zenikaLogo from "/zenika.svg";
 import "./App.css";
 
 import { Cinema } from "./features/cinema/Cinema";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import Talks from "./features/talks/Talks";
 import IconPublic from "./features/icons/Public";
 
@@ -87,4 +87,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticationRequired(App);
