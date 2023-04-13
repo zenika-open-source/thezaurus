@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Select from "react-select";
 import Talk from "./Talk";
 
@@ -17,28 +17,6 @@ function Talks() {
 
   const cleanSelectedValues = (e) =>
     Array.isArray(e) ? e.map((x) => x.value) : [];
-
-  useEffect(() => {
-    fetch("/talks.json")
-      .then((response) => response.json())
-      .then((response) => {
-        let events = [];
-        let formats = [];
-        let authors = [];
-        let ressources = [];
-        response.map((talk) => {
-          events.push(talk.event);
-          formats.push(talk.format);
-          authors.push(talk.author);
-          ressources.push(talk.ressource);
-        });
-        setFilterEvent(transformToSelectOptions(events));
-        setFilterFormat(transformToSelectOptions(formats));
-        setFilterAuthor(transformToSelectOptions(authors));
-        setFilterRessource(transformToSelectOptions(ressources));
-        setTalks(response);
-      });
-  }, []);
 
   const [selectedFilterEvent, setSelectedFilterEvent] = useState([]);
   const handleFilterEventChange = (e) => {
@@ -69,7 +47,7 @@ function Talks() {
     return found;
   };
 
-  useEffect(() => {
+  useMemo(() => {
     // filters management
     let _filtered = talks;
     if (selectedFilterTitle.length)
@@ -102,6 +80,29 @@ function Talks() {
     selectedFilterFormat,
     selectedFilterRessource,
   ]);
+
+  useEffect(() => {
+    fetch("/talks.json")
+      .then((response) => response.json())
+      .then((response) => {
+        let events = [];
+        let formats = [];
+        let authors = [];
+        let ressources = [];
+        response.map((talk) => {
+          events.push(talk.event);
+          formats.push(talk.format);
+          authors.push(talk.author);
+          ressources.push(talk.ressource);
+        });
+        setFilterEvent(transformToSelectOptions(events));
+        setFilterFormat(transformToSelectOptions(formats));
+        setFilterAuthor(transformToSelectOptions(authors));
+        setFilterRessource(transformToSelectOptions(ressources));
+        setTalks(response);
+        setFilteredTalks(response);
+      });
+  }, []);
 
   return (
     <>
