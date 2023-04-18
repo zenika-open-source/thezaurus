@@ -3,6 +3,7 @@ import { Open_Sans, Nunito } from "next/font/google";
 import Head from "next/head";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Talks from "@/components/elements/Talks/Talks";
+import Link from "next/link";
 
 const opensans = Open_Sans({ subsets: ["latin"] });
 const nunito = Nunito({ subsets: ["latin"] });
@@ -60,12 +61,12 @@ function Index() {
             n&apos;est pas adapté à toutes les populations 🤔🧌 Si vous avez
             mieux comme outils, n&apos;hésitez pas 😄
           </p>
-          <a
+          <Link
             className="button connexion h-10 w-40 rounded-lg px-4 m-4 py-2 inline-block"
             href="/api/auth/logout"
           >
             Se déconnecter
-          </a>
+          </Link>
         </section>
         <Talks />
         <footer className="text-xs text-center py-2 border-t">
@@ -94,7 +95,7 @@ function Index() {
     );
   }
 
-  return <a href="/api/auth/login">Login</a>;
+  return <Link href="/api/auth/login">Login</Link>;
 }
 
 export default Index;
