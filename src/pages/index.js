@@ -8,7 +8,7 @@ import Link from "next/link";
 const opensans = Open_Sans({ subsets: ["latin"] });
 const nunito = Nunito({ subsets: ["latin"] });
 
-function Index() {
+export default function Index() {
   const { user, error, isLoading } = useUser();
 
   if (isLoading) return <div>Loading...</div>;
@@ -95,7 +95,14 @@ function Index() {
     );
   }
 
-  return <Link href="/api/auth/login">Login</Link>;
+  return (
+    <div className="h-full flex items-center justify-center">
+      <Link
+        href="/api/auth/login"
+        className="button connexion h-10 w-40 rounded-lg px-4 py-2 inline-bloc text-center"
+      >
+        Login
+      </Link>
+    </div>
+  );
 }
-
-export default Index;
