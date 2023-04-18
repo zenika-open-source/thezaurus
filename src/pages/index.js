@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Talks from "@/components/elements/Talks/Talks";
 import Link from "next/link";
+import IconPublic from "@/components/icons/Public";
 
 const opensans = Open_Sans({ subsets: ["latin"] });
 const nunito = Nunito({ subsets: ["latin"] });
@@ -39,16 +40,8 @@ export default function Index() {
             Listing de support d&apos;upskilling pour les consultants Zenika.
             Ces médias sont des productions internes, et ne doivent pas être
             diffusées hors de Zenika sauf mention contraire explicite{" "}
-            <Image
-              src="/public.svg"
-              alt="icone public"
-              width={20}
-              height={20}
-              priority
-              className="inline-block"
-            />
-            . Chaque média est daté et le contexte de présentation est précisé
-            ici.
+            <IconPublic />. Chaque média est daté et le contexte de présentation
+            est précisé ici.
           </p>
           <p>
             Sont éligibles ici les vidéos avec contenu de formation, avancé ou

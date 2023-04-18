@@ -1,18 +1,35 @@
 import Image from "next/image";
 import { Nunito } from "next/font/google";
+import IconFormation from "@/components/icons/Formation";
+import IconPublic from "@/components/icons/Public";
+import IconVideo from "@/components/icons/Video";
+import IconTalk from "@/components/icons/Talk";
+import IconView from "@/components/icons/View";
 const nunito = Nunito({ subsets: ["latin"] });
 
 function Talk(props) {
-  const emojiFormat = ["formation", "public", "video"];
   const talk = props.talk;
 
+  const emojiFormat = {
+    formation: (
+      <span title="formation">
+        <IconFormation />
+      </span>
+    ),
+    public: (
+      <span title="public">
+        <IconPublic />
+      </span>
+    ),
+    video: (
+      <span title="video">
+        <IconVideo />
+      </span>
+    ),
+  };
   const listFormat = talk.format.map((f) => (
     <li key={f.toString()} className="mx-1">
-      {emojiFormat.indexOf(f) !== -1 ? (
-        <Image src={`/${f}.svg`} alt={f} width={20} height={20} />
-      ) : (
-        <Image src={`/talk.svg`} alt="talk" width={20} height={20} />
-      )}
+      {emojiFormat[f] || IconTalk}
     </li>
   ));
 
@@ -37,12 +54,7 @@ function Talk(props) {
           title="Voir le talk"
           onClick={() => window.open(talk.link, "_blank")}
         >
-          <Image
-            src="/view.svg"
-            alt="visualiser le talk"
-            width={30}
-            height={30}
-          />
+          <IconView />
         </button>
         <h3 className={`${nunito.className} text-xl leading-6 mb-2`}>
           {talk.title}
