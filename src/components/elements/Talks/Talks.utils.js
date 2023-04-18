@@ -22,14 +22,39 @@ export function hasValue(values, obj, prop) {
   return found;
 }
 
-export function apiTalksToDTO(talks) {
-  return talks.map((t) => ({
-    event: t[0],
-    date: t[1],
-    format: t[2].split(",").map((x) => x.trim()),
-    title: t[3],
-    link: t[4],
-    author: t[5].split(",").map((x) => x.trim()),
-    ressource: t[6],
-  }));
+export function apiTalksToDTO(fetchedTalks) {
+  let events = [];
+  let formats = [];
+  let authors = [];
+  let ressources = [];
+  let talks = [];
+  fetchedTalks.map((talk) => {
+    const event = talk[0];
+    const date = talk[1];
+    const format = talk[2].split(",").map((x) => x.trim());
+    const title = talk[3];
+    const link = talk[4];
+    const author = talk[5].split(",").map((x) => x.trim());
+    const ressource = talk[6];
+    events.push(event);
+    format.map((f) => formats.push(f));
+    author.map((a) => authors.push(a));
+    ressources.push(ressource);
+    talks.push({
+      event,
+      date,
+      format,
+      title,
+      link,
+      author,
+      ressource,
+    });
+  });
+  return {
+    events: transformToSelectOptions(events),
+    formats: transformToSelectOptions(formats),
+    authors: transformToSelectOptions(authors),
+    ressources: transformToSelectOptions(ressources),
+    talks,
+  };
 }

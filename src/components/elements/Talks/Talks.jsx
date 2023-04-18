@@ -2,11 +2,7 @@ import { Nunito } from "next/font/google";
 import Filter from "../Filter/Filter";
 import { useEffect, useMemo, useState } from "react";
 import { fetchTalks } from "./Talks.api";
-import {
-  cleanSelectedValues,
-  hasValue,
-  transformToSelectOptions,
-} from "./Talks.utils";
+import { cleanSelectedValues, hasValue } from "./Talks.utils";
 import Talk from "../Talk/Talk";
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -40,23 +36,13 @@ function Talks() {
   };
 
   useEffect(() => {
-    fetchTalks().then((talks) => {
-      let events = [];
-      let formats = [];
-      let authors = [];
-      let ressources = [];
-      talks.map((talk) => {
-        events.push(talk.event);
-        talk.format.map((f) => formats.push(f));
-        talk.author.map((a) => authors.push(a));
-        ressources.push(talk.ressource);
-      });
-      setFilterEvent(transformToSelectOptions(events));
-      setFilterFormat(transformToSelectOptions(formats));
-      setFilterAuthor(transformToSelectOptions(authors));
-      setFilterRessource(transformToSelectOptions(ressources));
-      setTalks(talks);
-      setFilteredTalks(talks);
+    fetchTalks().then((api) => {
+      setFilterEvent(api.events);
+      setFilterFormat(api.formats);
+      setFilterAuthor(api.authors);
+      setFilterRessource(api.ressources);
+      setTalks(api.talks);
+      setFilteredTalks(api.talks);
     });
   }, []);
 

@@ -12,11 +12,7 @@ export default withApiAuthRequired(async function handler(req, res) {
           "\n"
         ),
       },
-      scopes: [
-        "https://www.googleapis.com/auth/drive",
-        "https://www.googleapis.com/auth/drive.file",
-        "https://www.googleapis.com/auth/spreadsheets.readonly",
-      ],
+      scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
     });
 
     const sheets = google.sheets({
@@ -26,10 +22,10 @@ export default withApiAuthRequired(async function handler(req, res) {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.GOOGLE_DOC_ID,
-      range: "A:G",
+      range: "A2:G",
     });
 
-    res.status(201).json({ talks: response.data.values.splice(1) });
+    res.status(201).json({ talks: response.data.values });
   }
   res.status(200).json();
 });
