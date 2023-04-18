@@ -11,14 +11,16 @@ export function cleanSelectedValues(e) {
 
 export function hasValue(values, obj, prop) {
   let found = false;
-  values.forEach((v) => {
-    if (Array.isArray(obj[prop])) {
-      obj[prop].forEach((p) => {
-        if (p.toLowerCase().indexOf(v.toLowerCase()) !== -1) found = true;
-      });
-    } else if (obj[prop].toLowerCase().indexOf(v.toLowerCase()) !== -1)
-      found = true;
-  });
+  if (values.length)
+    values.forEach((v) => {
+      if (Array.isArray(obj[prop])) {
+        obj[prop].forEach((p) => {
+          if (p.toLowerCase().indexOf(v.toLowerCase()) !== -1) found = true;
+        });
+      } else if (obj[prop].toLowerCase().indexOf(v.toLowerCase()) !== -1)
+        found = true;
+    });
+  else found = true;
   return found;
 }
 
