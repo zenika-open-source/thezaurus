@@ -1,36 +1,37 @@
-# thezaurus
-A thesaurus for talks given by Z
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Dev mode
+## Getting Started
 
-1. Having `node` on your computer
-2. Clone the repository
-3. Go to the directory
-4. Launch
+First, run the development server:
 
-If you have `pnpm` (the best solution)
 ```bash
-pnpm install
-pnpm run dev
-```
-
-If you have `yarn`
-```bash
-yarn install
-yarn dev
-```
-
-If you have just `npm`
-```bash
-npm install
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
-## `.env` file
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Installation
 
 Create a `.env` file in the root directory, then put this data:
 
-```env
-VITE_GOOGLE_API_KEY = /* A TOKEN GOOGLE */
-VITE_GOOGLE_DOC_ID = /* THE GOOGLE SHEETS ID */
+```
+# A long, secret value used to encrypt the session cookie
+AUTH0_SECRET=''
+# The base url of your application
+AUTH0_BASE_URL=''
+# The url of your Auth0 tenant domain
+AUTH0_ISSUER_BASE_URL=''
+# Your Auth0 application's Client ID
+AUTH0_CLIENT_ID=''
+# Your Auth0 application's Client Secret
+AUTH0_CLIENT_SECRET=''
+
+GOOGLE_DOC_ID = ""
+GOOGLE_CLIENT_EMAIL = ""
+GOOGLE_CLIENT_ID = ""
+GOOGLE_CLIENT_PRIVATE_KEY = ""
 ```
