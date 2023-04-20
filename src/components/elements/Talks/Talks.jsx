@@ -74,7 +74,7 @@ function Talks() {
           />
         </label>
       </form>
-      <section className="flex-grow flex items-stretch justify-center pb-4 flex-col md:flex-row">
+      <section className="grid grid-cols-4 gap-4 mx-auto w-11/12 mb-4">
         {talks}
       </section>
     </div>
