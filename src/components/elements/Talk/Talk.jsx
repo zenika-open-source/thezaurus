@@ -34,7 +34,7 @@ function Talk(props) {
   ));
 
   return (
-    <article className="talk rounded-lg shadow-lg lg:w-96 lg:h-56 border border-slate-50 text-sm flex flex-col">
+    <article className="talk rounded-lg shadow-lg w-full border border-slate-50 text-sm flex flex-col">
       <header className="flex items-stretch">
         <span className="flex-grow text-sm px-4 py-1 border-b">
           <span className="event px-2 py-1 text-xs text-white rounded-full font-bold mr-1">
