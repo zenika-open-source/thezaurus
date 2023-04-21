@@ -74,7 +74,7 @@ function Talks() {
           />
         </label>
       </form>
-      <section className="grid grid-cols-4 gap-4 mx-auto w-11/12 mb-4">
+      <section className="grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mx-auto w-11/12 mb-4">
         {talks}
       </section>
     </div>
