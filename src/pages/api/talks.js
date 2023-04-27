@@ -22,7 +22,7 @@ export default withApiAuthRequired(async function handler(req, res) {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.GOOGLE_DOC_ID,
-      range: "A2:G",
+      range: "B2:H",
     });
 
     res.status(201).json({ talks: response.data.values });
