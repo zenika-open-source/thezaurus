@@ -30,6 +30,8 @@ AUTH0_CLIENT_ID=''
 # Your Auth0 application's Client Secret
 AUTH0_CLIENT_SECRET=''
 
+# Nom de la feuille qui sert à contenir les informations. Laisser vide pour prendre la première page par défaut.
+GOOGLE_DOC_SHEET_NAME = ""
 GOOGLE_DOC_ID = ""
 GOOGLE_CLIENT_EMAIL = ""
 GOOGLE_CLIENT_ID = ""
