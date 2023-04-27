@@ -45,7 +45,7 @@ export default function Index() {
           </p>
           <p>
             Sont éligibles ici les vidéos avec contenu de formation, avancé ou
-            non, permettant aux consultant internes de découvrir ou
+            non, permettant aux consultants internes de découvrir ou
             d&apos;approfondir un sujet. Les contenus commerciaux ne sont pas la
             cible de cette librairie.
           </p>
