@@ -37,3 +37,8 @@ GOOGLE_CLIENT_EMAIL = ""
 GOOGLE_CLIENT_ID = ""
 GOOGLE_CLIENT_PRIVATE_KEY = ""
 ```
+
+
+## Deploy to Google Cloud Run
+
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
