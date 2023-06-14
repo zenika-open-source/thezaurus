@@ -54,6 +54,27 @@ export default function Index() {
             n&apos;est pas adapté à toutes les populations 🤔🧌 Si vous avez
             mieux comme outils, n&apos;hésitez pas 😄
           </p>
+          <p>
+            La documentation technique et la documentation sur l&apos;ajout d&apos;un talk est
+            disponible&nbsp;
+            <a
+              href="https://docs.google.com/document/d/1FMLZWCNmCYxix0cRr0Ars0UnaZvoQQpRdRNnXGIzKOo/edit?usp=sharing"
+              target="_blank"
+              title="Lien vers la documentation de TheZaurus"
+              rel="noopener"
+            >
+              ici
+            </a>
+            . Vous pouvez également accéder directement au formulaire d&apos;ajout en cliquant sur&nbsp;
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfF99AC8fEKcXXF6z-gZMeCCtSGyUvQYxjO03Z1SkP2k3yNrg/viewform"
+              target="_blank"
+              title="Lien vers le formulaire d'ajout"
+              rel="noopener"
+            >
+              ce lien
+            </a>.
+          </p>
           <Link
             className="button connexion h-10 w-40 rounded-lg px-4 m-4 py-2 inline-block"
             href="/api/auth/logout"
