@@ -5,6 +5,7 @@ import { fetchTalks } from "./Talks.api";
 import { cleanSelectedValues, hasValue } from "./Talks.utils";
 import Talk from "../Talk/Talk";
 import reducer from "./Talks.reducer";
+import Spinner from "../Spinner/Spinner";
 const nunito = Nunito({ subsets: ["latin"] });
 
 function Talks() {
@@ -12,6 +13,7 @@ function Talks() {
   const [filterFormat, setFilterFormat] = useState([]);
   const [filterAuthor, setFilterAuthor] = useState([]);
   const [filterRessource, setFilterRessource] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const [state, dispatch] = useReducer(reducer, {});
 
   useEffect(() => {
@@ -21,6 +23,7 @@ function Talks() {
       setFilterAuthor(api.authors);
       setFilterRessource(api.ressources);
       dispatch({ type: "init", payload: api.talks });
+      setLoading(false);
     });
   }, []);
 
@@ -74,6 +77,7 @@ function Talks() {
           />
         </label>
       </form>
+      {isLoading ? <Spinner /> : ""}
       <section className="grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mx-auto w-11/12 mb-4">
         {talks}
       </section>

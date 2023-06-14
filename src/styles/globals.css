@@ -2,18 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
-  --color-primary1: #EE2238;
-  --color-primary2: #1E1E1E;
-  --color-primary3: #FFFFFF;
-  --color-primary4: #F2F2F2;
-  --color-secondary1: #F4C042;
-  --color-secondary2: #A188EF;
-  --color-secondary3: #4CA8E7;
-  --color-secondary4: #00EB84;
+  --color-primary1: hwb(354 13% 7%);
+  --color-primary2: #1e1e1e;
+  --color-primary3: #ffffff;
+  --color-primary4: #f2f2f2;
+  --color-secondary1: #f4c042;
+  --color-secondary2: #a188ef;
+  --color-secondary3: #4ca8e7;
+  --color-secondary4: #00eb84;
 
-  font-family: 'Open Sans', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -28,7 +27,9 @@
   -webkit-text-size-adjust: 100%;
 }
 
-html, body, body > div {
+html,
+body,
+body > div {
   margin: 0;
   width: 100%;
   height: 100%;
@@ -51,7 +52,8 @@ h2 {
   font-weight: 600;
 }
 
-.jumbo, main > footer {
+.jumbo,
+main > footer {
   background-color: var(--color-primary4);
   color: var(--color-primary2);
 }
@@ -60,9 +62,10 @@ h2 {
   text-decoration: none;
 }
 
-button:hover::after, .button:hover::after {
+button:hover::after,
+.button:hover::after {
   position: absolute;
-  content: '';
+  content: "";
   top: 0;
   bottom: 0;
   left: 0;
@@ -104,6 +107,29 @@ button:hover::after, .button:hover::after {
 
 .talk section button {
   background-color: var(--color-secondary4);
+}
+
+#loading {
+  display: block;
+  margin: 20px auto;
+  width: 100px;
+  height: 100px;
+  border: 5px solid rgba(238, 34, 56, 0.5);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @media (prefers-color-scheme: light) {
