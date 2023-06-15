@@ -9,6 +9,8 @@ function Filter(props) {
         isMulti
         isSearchable
         onChange={props.onChange}
+        className="my-react-select-container"
+        classNamePrefix="my-react-select"
       />
     </label>
   );
