@@ -11,16 +11,20 @@ export function cleanSelectedValues(e) {
 
 export function hasValue(values, obj, prop) {
   let found = false;
-  if (values.length)
+  if (values.length) {
     values.forEach((v) => {
+      v = sansDiacritiques(v).toLowerCase();
       if (Array.isArray(obj[prop])) {
         obj[prop].forEach((p) => {
-          if (p.toLowerCase().indexOf(v.toLowerCase()) !== -1) found = true;
+          p = sansDiacritiques(p).toLowerCase();
+          if (p.indexOf(v) !== -1) found = true;
         });
-      } else if (obj[prop].toLowerCase().indexOf(v.toLowerCase()) !== -1)
-        found = true;
+      } else {
+        let propVal = sansDiacritiques(obj[prop]).toLowerCase();
+        if (propVal.indexOf(v) !== -1) found = true;
+      }
     });
-  else found = true;
+  } else found = true;
   return found;
 }
 
@@ -59,4 +63,8 @@ export function apiTalksToDTO(fetchedTalks) {
     ressources: transformToSelectOptions(ressources),
     talks,
   };
+}
+
+function sansDiacritiques(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
