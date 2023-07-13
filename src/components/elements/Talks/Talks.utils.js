@@ -9,16 +9,18 @@ export function cleanSelectedValues(e) {
   return Array.isArray(e) ? e.map((x) => x.value) : [];
 }
 
-export function hasValue(values, obj, prop) {
+export function hasValues(values, obj, prop) {
   let found = false;
   if (values.length) {
+    let i = 0;
     values.forEach((v) => {
       v = sansDiacritiques(v).toLowerCase();
       if (Array.isArray(obj[prop])) {
         obj[prop].forEach((p) => {
           p = sansDiacritiques(p).toLowerCase();
-          if (p.indexOf(v) !== -1) found = true;
+          if (p.indexOf(v) !== -1) i++;
         });
+        if (i === values.length) found = true;
       } else {
         let propVal = sansDiacritiques(obj[prop]).toLowerCase();
         if (propVal.indexOf(v) !== -1) found = true;
@@ -41,12 +43,12 @@ export function apiTalksToDTO(fetchedTalks) {
     const title = talk[3];
     const link = talk[4];
     const author = talk[5]?.split(",").map((x) => x.trim());
-    const ressource = talk[6];
+    const ressource = talk[6]?.split(",").map((x) => x.trim());
     if (title != "" && format) {
       events.push(event);
       format?.map((f) => formats.push(f));
       author?.map((a) => authors.push(a));
-      ressources.push(ressource);
+      ressource?.map((r) => ressources.push(r));
       talks.push({
         event,
         date,

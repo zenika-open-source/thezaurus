@@ -61,7 +61,7 @@ function Talk(props) {
         </h3>
         <p className="text-sm">{talk.author.join(", ")}</p>
       </section>
-      <footer className="text-xs px-4 py-1 border-t">{talk.ressource}</footer>
+      <footer className="text-xs px-4 py-1 border-t">{talk.ressource.join(", ")}</footer>
     </article>
   );
 }
