@@ -1,4 +1,4 @@
-import { hasValue } from "./Talks.utils";
+import { hasValues } from "./Talks.utils";
 
 const INITIAL_STATE = {
   talks: [],
@@ -14,9 +14,10 @@ const reducer = (state = INITIAL_STATE, action) => {
     case "format":
     case "ressource":
       const filters = { ...state.filters, [action.type]: action.payload };
+      console.log(filters);
       let talks = state.initialTalks;
-      for (const [key, value] of Object.entries(filters)) {
-        talks = talks.filter((talk) => hasValue(value, talk, key));
+      for (const [key, values] of Object.entries(filters)) {
+        talks = talks.filter((talk) => hasValues(values, talk, key));
       }
       return {
         talks,
