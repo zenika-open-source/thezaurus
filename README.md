@@ -36,6 +36,9 @@ GOOGLE_DOC_ID = ""
 GOOGLE_CLIENT_EMAIL = ""
 GOOGLE_CLIENT_ID = ""
 GOOGLE_CLIENT_PRIVATE_KEY = ""
+
+#newrelic (monitoring) license key
+NEW_RELIC_LICENSE_KEY = ""
 ```
 
 
