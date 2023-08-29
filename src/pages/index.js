@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Talks from "@/components/elements/Talks/Talks";
 import Link from "next/link";
+import IconLogout from "@/components/icons/Logout";
 import IconPublic from "@/components/icons/Public";
 
 const opensans = Open_Sans({ subsets: ["latin"] });
@@ -16,20 +17,30 @@ export default function Index() {
   if (error) return <div>{error.message}</div>;
   if (user) {
     return (
-      <main className={`${opensans.className} flex flex-col h-full`}>
+      <main className={`${opensans.className} flex flex-col h-full px-2`}>
         <Head>
           <link rel="icon" type="image/svg+xml" href="/zenika.svg" />
           <title>TheZaurus</title>
         </Head>
 
-        <header className="border-b">
-          <h1
-            className={`${nunito.className} flex flex-row items-center text-4xl justify-center`}
+        <header className="py-1 grid grid-cols-[1fr_repeat(1,auto)_1fr] items-center">
+
+          <div className="col-start-2">
+            <h1 className={`text-4xl ${nunito.className} flex justify-center`}>
+              <span>The</span>
+              <Image src="/zenika.svg" alt="Z" width={35} height={35} priority />
+              <span>aurus</span>
+            </h1>
+            <p className="text-center py-1 text-sm">
+              Librairie de formation interne Zenika
+            </p>
+          </div>
+          <Link
+              className="button connexion rounded-lg ml-auto p-1"
+              href="/api/auth/logout"
           >
-            <span className="-mr-3">The</span>
-            <Image src="/zenika.svg" alt="Z" width={60} height={60} priority />
-            <span className="-ml-3">aurus</span>
-          </h1>
+            <IconLogout width={30} />
+          </Link>
         </header>
 
         <p className="jumbo text-center py-2 border-b">
@@ -75,14 +86,9 @@ export default function Index() {
               ce lien
             </a>.
           </p>
-          <Link
-            className="button connexion h-10 w-40 rounded-lg px-4 m-4 py-2 inline-block"
-            href="/api/auth/logout"
-          >
-            Se déconnecter
-          </Link>
         </section>
         <Talks />
+
         <footer className="text-xs text-center py-2 border-t">
           <p>
             Note : la liste des catégories est tirée de la liste officielle des{" "}
