@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" data-name="Calque 1" viewBox="0 0 963.51 963.51">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="227 227 510 510">
     <defs>
-        <linearGradient id="a" x1="227.22" x2="735.72" y1="482.36" y2="482.36"
+        <linearGradient id="a" x1="227" x2="736" y1="482" y2="482"
             gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#ee2238" />
             <stop offset="1" stop-color="#bf1d67" />
