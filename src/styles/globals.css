@@ -98,11 +98,9 @@ button:hover::after,
   background-color: var(--color-secondary1);
 }
 
-.talk header .event {
-  background-color: var(--color-secondary2);
-}
-
-.talk header .date {
+.talk .event {
+  @apply py-1 px-2 rounded-full;
+  color: var(--color-primary4);
   background-color: var(--color-secondary3);
 }
 

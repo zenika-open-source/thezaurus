@@ -5,6 +5,8 @@ import IconPublic from "@/components/icons/Public";
 import IconVideo from "@/components/icons/Video";
 import IconTalk from "@/components/icons/Talk";
 import IconView from "@/components/icons/View";
+import Ressource from "@/components/elements/Ressource/Ressource";
+import IconMapPin from "@/components/icons/MapPin";
 const nunito = Nunito({ subsets: ["latin"] });
 
 function Talk(props) {
@@ -35,15 +37,10 @@ function Talk(props) {
 
   return (
     <article className="talk rounded-lg shadow-lg w-full border border-slate-50 text-sm flex flex-col h-56">
-      <header className="flex items-stretch">
-        <span className="flex-grow text-sm px-4 py-1 border-b">
-          <span className="event px-2 py-1 text-xs text-white rounded-full font-bold mr-1">
-            {talk.event}
-          </span>
-          <span className="date px-2 py-1 text-xs text-white rounded-full font-bold mr-1">
-            {talk.date}
-          </span>
-        </span>
+      <header className="flex items-center">
+        <div className="flex-grow text-sm font-bold px-2 py-1 border-b ">
+          {talk.ressource.map((ressource, i) => <Ressource ressource={ressource} key={i} />)}
+        </div>
         <aside className="text-sm px-2 py-1 rounded-bl-md rounded-tr-lg">
           <ul className="list-format flex flex-row text-white">{listFormat}</ul>
         </aside>
@@ -61,7 +58,13 @@ function Talk(props) {
         </h3>
         <p className="text-sm">{talk.author.join(", ")}</p>
       </section>
-      <footer className="text-xs px-4 py-1 border-t">{talk.ressource.join(", ")}</footer>
+      <footer className="text-xs font-bold px-2 py-1 border-t flex justify-between items-center">
+        <div className="flex event">
+          <IconMapPin width={16} />
+          <span className="ml-1">{talk.event}</span>
+        </div>
+        <span className="date">{talk.date}</span>
+      </footer>
     </article>
   );
 }
