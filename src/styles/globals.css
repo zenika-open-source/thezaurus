@@ -58,6 +58,9 @@ main > footer {
   color: var(--color-primary2);
 }
 
+.button {
+  color: var(--color-primary2);
+}
 .button:hover {
   text-decoration: none;
 }
@@ -79,6 +82,9 @@ button:hover::after,
   position: relative;
 }
 
+.description {
+  @apply bg-green-200 dark:bg-green-900;
+}
 .description svg {
   display: inline-block;
 }
@@ -107,6 +113,10 @@ button:hover::after,
 
 .talk section button {
   background-color: var(--color-secondary4);
+}
+
+details summary {
+  cursor: pointer;
 }
 
 #loading {

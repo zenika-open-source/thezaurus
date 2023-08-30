@@ -6,6 +6,7 @@ import { cleanSelectedValues, hasValue } from "./Talks.utils";
 import Talk from "../Talk/Talk";
 import reducer from "./Talks.reducer";
 import Spinner from "../Spinner/Spinner";
+import IconContribute from "@/components/icons/Contribute";
 const nunito = Nunito({ subsets: ["latin"] });
 
 function Talks() {
@@ -34,8 +35,7 @@ function Talks() {
   return (
     <div className="flex-grow">
       <h2 className={`${nunito.className} text-center`}>
-        Collection des médias disponibles au sein de Zenika, pour utilisation
-        interne
+        Collection des médias disponibles au sein de Zenika
       </h2>
       <form className="grid grid-cols-1 gap-3 text-xs my-4 px-2 md:mx-auto w-full md:max-w-7xl md:grid-cols-4">
         <Filter
@@ -66,7 +66,7 @@ function Talks() {
             dispatch({ type: "ressource", payload: cleanSelectedValues(e) })
           }
         />
-        <label className="md:col-span-4">
+        <label className="lg:col-span-3">
           Titre :
           <input
             type="text"
@@ -76,6 +76,16 @@ function Talks() {
             }
           />
         </label>
+            <a
+                className="contribute button text-black py-2 px-8 mt-3 lg:mt0 self-end justify-self-center relative flex items-center justify-center"
+                title="ajouter un talk"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfF99AC8fEKcXXF6z-gZMeCCtSGyUvQYxjO03Z1SkP2k3yNrg/viewform"
+                target="_blank"
+                rel="noopener"
+            >
+                <IconContribute width={22} />
+                <p className="ml-2 font-semibold">Contribuer</p>
+            </a>
       </form>
       {isLoading ? <Spinner /> : ""}
       <section className="grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mx-auto w-11/12 mb-4">
