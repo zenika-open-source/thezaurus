@@ -55,7 +55,7 @@ export default function Index() {
               <p>
                 Listing de support d&apos;upskilling pour les consultants Zenika.
                 Ces médias sont des productions internes, et ne doivent pas être
-                diffusées hors de Zenika sauf mention contraire explicite{" "}
+                diffusées hors de Zenika sauf mention contraire explicite&nbsp;
                 <IconPublic />. Chaque média est daté et le contexte de présentation
                 est précisé ici.
               </p>
@@ -99,7 +99,7 @@ export default function Index() {
 
         <footer className="text-xs text-center py-2 border-t">
           <p>
-            Note : la liste des catégories est tirée de la liste officielle des{" "}
+            Note : la liste des catégories est tirée de la liste officielle des&nbsp;
             <a
               href="https://app.mural.co/t/zenika3879/m/zenika3879/1657267681306/ae51f73d99476bbeab5efd791148293b243636df?sender=u4f4c156db63ae4f1b2b35952"
               target="_blank"
@@ -108,7 +108,7 @@ export default function Index() {
             >
               dominantes / sensibilités Zenika
             </a>
-            . Parcourir et intégrer le contenu du drive{" "}
+            . Parcourir et intégrer le contenu du drive&nbsp;
             <a
               href="https://drive.google.com/drive/folders/0AGdSbEOfEoGwUk9PVA"
               target="_blank"
