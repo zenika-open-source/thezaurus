@@ -28,6 +28,8 @@ export default withApiAuthRequired(async function handler(req, res) {
     });
 
     res.status(201).json({ talks: response.data.values });
+
+    return;
   }
   res.status(200).json();
 });
