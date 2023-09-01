@@ -2,7 +2,7 @@ import { Nunito } from "next/font/google";
 import Filter from "../Filter/Filter";
 import { useEffect, useReducer, useState } from "react";
 import { fetchTalks } from "./Talks.api";
-import { cleanSelectedValues, hasValue } from "./Talks.utils";
+import { cleanSelectedValues } from "./Talks.utils";
 import Talk from "../Talk/Talk";
 import reducer from "./Talks.reducer";
 import Spinner from "../Spinner/Spinner";
@@ -28,16 +28,14 @@ function Talks() {
     });
   }, []);
 
-  const talks = state.talks?.map((talk, i) => (
-    <Talk key={`talk_${i}`} talk={talk} />
-  ));
+  const talks = state.talks?.map((talk, i) => <Talk key={`talk_${i}`} talk={talk} />);
 
   return (
     <div className="flex-grow">
       <h2 className={`${nunito.className} text-center`}>
         Collection des médias disponibles au sein de Zenika
       </h2>
-      <form className="grid grid-cols-1 gap-3 text-xs my-4 px-2 md:mx-auto w-full md:max-w-7xl md:grid-cols-4">
+      <form className="grid grid-cols-1 gap-y-3 gap-x-8 text-xs my-4 px-2 lg:mx-auto w-full md:max-w-7xl lg:grid-cols-4">
         <Filter
           label="Event(s)"
           options={filterEvent}
@@ -87,8 +85,15 @@ function Talks() {
                 <p className="ml-2 font-semibold">Contribuer</p>
             </a>
       </form>
-      {isLoading ? <Spinner /> : ""}
-      <section className="grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 mx-auto w-11/12 mb-4">
+      {isLoading && <Spinner />}
+      <section className={
+          ['w-11/12 mx-auto my-8',
+          'grid gap-8',
+          'md:grid-cols-2 md:gap-10',
+          '2xl:grid-cols-3 2xl:gap-12',
+          '3xl:grid-cols-4',
+          '4xl:gap-16'
+          ].join(' ')}>
         {talks}
       </section>
     </div>
