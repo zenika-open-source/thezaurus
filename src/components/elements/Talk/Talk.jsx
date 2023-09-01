@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Nunito } from "next/font/google";
 import IconFormation from "@/components/icons/Formation";
 import IconPublic from "@/components/icons/Public";
@@ -34,31 +33,32 @@ function Talk(props) {
       {emojiFormat[f] || IconTalk}
     </li>
   ));
+  const authors = talk.author.join(", ");
 
   return (
     <article className="talk rounded-lg shadow-lg w-full border border-slate-50 text-sm flex flex-col h-56">
-      <header className="flex items-center">
-        <div className="flex-grow text-sm font-bold px-2 py-1 border-b ">
-          {talk.ressource.map((ressource, i) => <Ressource ressource={ressource} key={i} />)}
+      <header className="flex items-stretch">
+        <div className="pl-3 py-1 mr-[-5px] flex-grow text-sm font-medium border-b">
+          {talk.ressource.map((ressource, i) => <Ressource ressource={ressource} key={i} className="mr-5"/>)}
         </div>
-        <aside className="text-sm px-2 py-1 rounded-bl-md rounded-tr-lg">
-          <ul className="list-format flex flex-row text-white">{listFormat}</ul>
+        <aside className="px-2 py-1 flex items-center rounded-bl-md rounded-tr-lg">
+          <ul className="list-format flex flex-row justify-between text-white">{listFormat}</ul>
         </aside>
       </header>
-      <section className="flex-grow px-4 py-2 relative">
+      <section className="px-3 py-2 relative flex-grow flex flex-col justify-between">
         <button
-          className="m-2 flex items-center justify-center rounded-md w-10 h-10 absolute bottom-0 right-0"
+          className="absolute w-10 h-10 bottom-2 right-2 flex items-center justify-center"
           title="Voir le talk"
           onClick={() => window.open(talk.link, "_blank")}
         >
-          <IconView />
+          <IconView width={33}/>
         </button>
-        <h3 className={`${nunito.className} text-xl leading-6 mb-2`}>
+        <h3 className={`${nunito.className} text-xl leading-6 line-clamp-4`} title={talk.title}>
           {talk.title}
         </h3>
-        <p className="text-sm">{talk.author.join(", ")}</p>
+        <p className="max-w-[90%] pl-1 text-sm font-medium line-clamp-2" title={authors}>{authors}</p>
       </section>
-      <footer className="text-xs font-bold px-2 py-1 border-t flex justify-between items-center">
+      <footer className="pl-3 pr-2 py-1 text-xs font-medium border-t flex justify-between items-center">
         <div className="flex event">
           <IconMapPin width={16} />
           <span className="ml-1">{talk.event}</span>

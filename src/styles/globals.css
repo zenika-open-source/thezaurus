@@ -99,9 +99,9 @@ button:hover::after,
 }
 
 .talk .event {
-  @apply py-1 px-2 rounded-full;
-  color: var(--color-primary4);
-  background-color: var(--color-secondary3);
+  @apply py-1;
+  color: var(--color-secondary3);
+  border: 1px var(--color-secondary3);
 }
 
 .talk section h3 {
@@ -109,7 +109,8 @@ button:hover::after,
   color: var(--color-primary1);
 }
 
-.talk section button {
+.talk section button, .contribute {
+  @apply rounded-md;
   background-color: var(--color-secondary4);
 }
 
