@@ -1,31 +1,26 @@
+"use client";
 import { Nunito } from "next/font/google";
 import Filter from "../Filter/Filter";
 import { useEffect, useReducer, useState } from "react";
-import { fetchTalks } from "./Talks.api";
 import { cleanSelectedValues } from "./Talks.utils";
 import Talk from "../Talk/Talk";
 import reducer from "./Talks.reducer";
-import Spinner from "../Spinner/Spinner";
 import IconContribute from "@/components/icons/Contribute";
 const nunito = Nunito({ subsets: ["latin"] });
 
-function Talks() {
+function Talks({ talks: api }) {
   const [filterEvent, setFilterEvent] = useState([]);
   const [filterFormat, setFilterFormat] = useState([]);
   const [filterAuthor, setFilterAuthor] = useState([]);
   const [filterRessource, setFilterRessource] = useState([]);
-  const [isLoading, setLoading] = useState(true);
   const [state, dispatch] = useReducer(reducer, {});
 
   useEffect(() => {
-    fetchTalks().then((api) => {
       setFilterEvent(api.events);
       setFilterFormat(api.formats);
       setFilterAuthor(api.authors);
       setFilterRessource(api.ressources);
       dispatch({ type: "init", payload: api.talks });
-      setLoading(false);
-    });
   }, []);
 
   const talks = state.talks?.map((talk, i) => <Talk key={`talk_${i}`} talk={talk} />);
@@ -85,7 +80,6 @@ function Talks() {
                 <p className="ml-2 font-semibold">Contribuer</p>
             </a>
       </form>
-      {isLoading && <Spinner />}
       <section className={
           ['w-11/12 mx-auto my-8',
           'grid gap-8',
