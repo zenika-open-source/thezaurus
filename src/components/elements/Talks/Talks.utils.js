@@ -30,38 +30,42 @@ export function hasValues(values, obj, prop) {
   return found;
 }
 
+function splitList(commaSeparatedString) {
+  return commaSeparatedString?.split(",").map((x) => x.trim()) || [];
+}
+
+function uniqueValuesForProperty(talks, property) {
+  return [...new Set(talks.map((t) => t[property]).flat())];
+}
+
 export function apiTalksToDTO(fetchedTalks) {
-  let events = [];
-  let formats = [];
-  let authors = [];
-  let ressources = [];
-  let talks = [];
-  fetchedTalks.map((talk) => {
-    const [event, date, rawFormat, title, link, rawAuthor, rawRessource] = talk;
-    const format = rawFormat?.split(",").map((x) => x.trim());
-    const author = rawAuthor?.split(",").map((x) => x.trim());
-    const ressource = rawRessource?.split(",").map((x) => x.trim());
-    if (title != "" && format) {
-      events.push(event);
-      format?.map((f) => formats.push(f));
-      author?.map((a) => authors.push(a));
-      ressource?.map((r) => ressources.push(r));
-      talks.push({
+  const talks = fetchedTalks
+    .map((talk) => {
+      const [event, date, format, title, link, author, ressource] = talk;
+      const formats = splitList(format);
+      const authors = splitList(author);
+      const ressources = splitList(ressource);
+      if (title === "" || !format) {
+        return null;
+      }
+      return {
         event,
         date,
-        format,
+        format: formats,
         title,
         link,
-        author,
-        ressource,
-      });
-    }
-  });
+        author: authors,
+        ressource: ressources,
+      };
+    })
+    .filter((talk) => talk);
   return {
-    events: transformToSelectOptions(events),
-    formats: transformToSelectOptions(formats),
-    authors: transformToSelectOptions(authors),
-    ressources: transformToSelectOptions(ressources),
+    events: transformToSelectOptions(uniqueValuesForProperty(talks, "event")),
+    formats: transformToSelectOptions(uniqueValuesForProperty(talks, "format")),
+    authors: transformToSelectOptions(uniqueValuesForProperty(talks, "author")),
+    ressources: transformToSelectOptions(
+      uniqueValuesForProperty(talks, "ressource")
+    ),
     talks,
   };
 }
