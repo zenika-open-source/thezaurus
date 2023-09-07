@@ -5,6 +5,7 @@
   "type": "module",
   "prettier": "./prettierrc.json",
   "scripts": {
+    "test": "node --test",
     "dev": "next dev",
     "dev_newrelic": "NODE_OPTIONS='-r dotenv/config -r @newrelic/next' next dev",
     "build": "next build",
