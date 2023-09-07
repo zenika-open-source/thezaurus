@@ -37,13 +37,10 @@ export function apiTalksToDTO(fetchedTalks) {
   let ressources = [];
   let talks = [];
   fetchedTalks.map((talk) => {
-    const event = talk[0];
-    const date = talk[1];
-    const format = talk[2]?.split(",").map((x) => x.trim());
-    const title = talk[3];
-    const link = talk[4];
-    const author = talk[5]?.split(",").map((x) => x.trim());
-    const ressource = talk[6]?.split(",").map((x) => x.trim());
+    const [event, date, rawFormat, title, link, rawAuthor, rawRessource] = talk;
+    const format = rawFormat?.split(",").map((x) => x.trim());
+    const author = rawAuthor?.split(",").map((x) => x.trim());
+    const ressource = rawRessource?.split(",").map((x) => x.trim());
     if (title != "" && format) {
       events.push(event);
       format?.map((f) => formats.push(f));
