@@ -56,6 +56,7 @@ function Talk(props) {
         <h3 className={`${nunito.className} text-xl leading-6 line-clamp-4`} title={talk.title}>
           {talk.title}
         </h3>
+        {talk.duration && <p>Durée: {talk.duration}</p>}
         <p className="max-w-[90%] pl-1 text-sm font-medium line-clamp-2" title={authors}>{authors}</p>
       </section>
       <footer className="pl-3 pr-2 py-1 text-xs font-medium border-t flex justify-between items-center">

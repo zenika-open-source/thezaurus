@@ -12,6 +12,7 @@ test("talks are mapped to expected objects", () => {
       "https://www.youtube.com/watch?v=GTFFqzAvZlg",
       "Sylvain Gougouzian",
       "Alien",
+      "",
       "00:32:51",
     ],
     [
@@ -22,6 +23,7 @@ test("talks are mapped to expected objects", () => {
       "https://youtu.be/Tj1yPUsA720",
       "Etienne Idoux, Mickaël Alves",
       "Alien",
+      "",
       "",
     ],
   ];
@@ -62,6 +64,7 @@ test("talks are mapped to expected objects", () => {
         "https://www.youtube.com/watch?v=GTFFqzAvZlg",
         "Sylvain Gougouzian",
         "Alien",
+        "",
         testCase,
       ],
     ];

@@ -42,8 +42,17 @@ const durationFormat = /\d\d:\d\d:\d\d/;
 export function apiTalksToDTO(fetchedTalks) {
   const talks = fetchedTalks
     .map((talk) => {
-      const [event, date, format, title, link, author, ressource, duration] =
-        talk;
+      const [
+        event,
+        date,
+        format,
+        title,
+        link,
+        author,
+        ressource,
+        _email,
+        duration,
+      ] = talk;
       if (title === "" || !format) {
         return null;
       }

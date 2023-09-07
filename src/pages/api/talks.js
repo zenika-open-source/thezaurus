@@ -38,9 +38,9 @@ function getSheetRange() {
   const googleSheetName = process.env.GOOGLE_DOC_SHEET_NAME;
   let range;
   if (googleSheetName) {
-    range = `${googleSheetName}!B2:H`;
+    range = `${googleSheetName}!B2:J`;
   } else {
-    range = "B2:H";
+    range = "B2:J";
   }
-  return range
+  return range;
 }
