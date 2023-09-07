@@ -12,6 +12,7 @@ test("talks are mapped to expected objects", () => {
       "https://www.youtube.com/watch?v=GTFFqzAvZlg",
       "Sylvain Gougouzian",
       "Alien",
+      "00:32:51",
     ],
     [
       "TZ Paris",
@@ -21,6 +22,7 @@ test("talks are mapped to expected objects", () => {
       "https://youtu.be/Tj1yPUsA720",
       "Etienne Idoux, Mickaël Alves",
       "Alien",
+      "",
     ],
   ];
   const mappedTalks = apiTalksToDTO(talks);
@@ -33,6 +35,7 @@ test("talks are mapped to expected objects", () => {
       link: "https://www.youtube.com/watch?v=GTFFqzAvZlg",
       author: ["Sylvain Gougouzian"],
       ressource: ["Alien"],
+      duration: "00:32:51",
     },
     {
       event: "TZ Paris",
@@ -42,7 +45,39 @@ test("talks are mapped to expected objects", () => {
       link: "https://youtu.be/Tj1yPUsA720",
       author: ["Etienne Idoux", "Mickaël Alves"],
       ressource: ["Alien"],
+      duration: null,
     },
   ]);
   assert.equal(mappedTalks.events.length, 2);
+});
+
+["", null, undefined, "invalid"].forEach((testCase) => {
+  test(`Invalid duration (${testCase}) is mapped as null`, () => {
+    const talks = [
+      [
+        "TZ Lyon",
+        "28/04/2023",
+        "video",
+        "Comment gérer des journées de 35h ?",
+        "https://www.youtube.com/watch?v=GTFFqzAvZlg",
+        "Sylvain Gougouzian",
+        "Alien",
+        testCase,
+      ],
+    ];
+    const mappedTalks = apiTalksToDTO(talks);
+    assert.deepEqual(mappedTalks.talks, [
+      {
+        event: "TZ Lyon",
+        date: "28/04/2023",
+        format: ["video"],
+        title: "Comment gérer des journées de 35h ?",
+        link: "https://www.youtube.com/watch?v=GTFFqzAvZlg",
+        author: ["Sylvain Gougouzian"],
+        ressource: ["Alien"],
+        duration: null,
+      },
+    ]);
+    assert.equal(mappedTalks.events.length, 1);
+  });
 });

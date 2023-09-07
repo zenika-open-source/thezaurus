@@ -38,16 +38,18 @@ function uniqueValuesForProperty(talks, property) {
   return [...new Set(talks.map((t) => t[property]).flat())];
 }
 
+const durationFormat = /\d\d:\d\d:\d\d/;
 export function apiTalksToDTO(fetchedTalks) {
   const talks = fetchedTalks
     .map((talk) => {
-      const [event, date, format, title, link, author, ressource] = talk;
-      const formats = splitList(format);
-      const authors = splitList(author);
-      const ressources = splitList(ressource);
+      const [event, date, format, title, link, author, ressource, duration] =
+        talk;
       if (title === "" || !format) {
         return null;
       }
+      const formats = splitList(format);
+      const authors = splitList(author);
+      const ressources = splitList(ressource);
       return {
         event,
         date,
@@ -56,6 +58,7 @@ export function apiTalksToDTO(fetchedTalks) {
         link,
         author: authors,
         ressource: ressources,
+        duration: durationFormat.test(duration) ? duration : null,
       };
     })
     .filter((talk) => talk);
