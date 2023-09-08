@@ -33,7 +33,18 @@ function splitList(commaSeparatedString) {
   return commaSeparatedString?.split(",").map((x) => x.trim()) || [];
 }
 
-const durationFormat = /\d\d:\d\d:\d\d/;
+function formatDuration(duration) {
+  const durationFormat = /(?<hours>\d\d):(?<minutes>\d\d):(?<seconds>\d\d)/;
+  const match = durationFormat.exec(duration);
+  if (!match) {
+    return null;
+  }
+  if (match.groups.hours === "00") {
+    return `${match.groups.minutes}:${match.groups.seconds}`;
+  }
+  return duration;
+}
+
 export function apiTalksToDTO(fetchedTalks) {
   const talks = fetchedTalks
     .map((talk) => {
@@ -62,7 +73,7 @@ export function apiTalksToDTO(fetchedTalks) {
         link,
         author: authors,
         ressource: ressources,
-        duration: durationFormat.test(duration) ? duration : null,
+        duration: formatDuration(duration),
       };
     })
     .filter((talk) => talk);

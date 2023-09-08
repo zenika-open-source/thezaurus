@@ -42,7 +42,7 @@ test("talks are mapped to expected objects", () => {
       link: "https://www.youtube.com/watch?v=GTFFqzAvZlg",
       author: ["Sylvain Gougouzian"],
       ressource: ["Alien"],
-      duration: "00:32:51",
+      duration: "32:51",
     },
     {
       event: "TZ Paris",
@@ -63,20 +63,20 @@ test("talks are mapped to expected objects", () => {
     let talk = validTalk({ duration: testCase });
     const talks = [talk];
     const mappedTalks = apiTalksToDTO(talks);
-    assert.deepEqual(mappedTalks.talks, [
-      {
-        event: "TZ Lyon",
-        date: "28/04/2023",
-        format: ["video"],
-        title: "Comment gérer des journées de 35h ?",
-        link: "https://www.youtube.com/watch?v=GTFFqzAvZlg",
-        author: ["Sylvain Gougouzian"],
-        ressource: ["Alien"],
-        duration: null,
-      },
-    ]);
-    assert.equal(mappedTalks.events.length, 1);
+    assert.equal(mappedTalks.talks[0].duration, null);
   });
+});
+
+test(`Duration under 1 hour is returned as minutes:seconds`, () => {
+  const talks = [validTalk({ duration: "00:32:05" })];
+  const mappedTalks = apiTalksToDTO(talks);
+  assert.equal(mappedTalks.talks[0].duration, "32:05");
+});
+
+test(`Duration above 1 hour is returned as hours:minutes:seconds`, () => {
+  const talks = [validTalk({ duration: "01:32:05" })];
+  const mappedTalks = apiTalksToDTO(talks);
+  assert.equal(mappedTalks.talks[0].duration, "01:32:05");
 });
 
 test("events are aggregated and sorted alphabetically", () => {
