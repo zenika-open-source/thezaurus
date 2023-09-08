@@ -2,19 +2,24 @@ import { test } from "node:test";
 import assert from "node:assert";
 import { apiTalksToDTO } from "../components/elements/Talks/Talks.utils.js";
 
+function validTalk(opts = {}) {
+  const { event, date, format, link, title, author, ressource } = opts;
+  return [
+    event || "TZ Lyon",
+    date || "28/04/2023",
+    format || "video",
+    title || "Comment gérer des journées de 35h ?",
+    link || "https://www.youtube.com/watch?v=GTFFqzAvZlg",
+    author || "Sylvain Gougouzian",
+    ressource || "Alien",
+    "",
+    opts.hasOwnProperty("duration") ? opts.duration : "00:32:51",
+  ];
+}
+
 test("talks are mapped to expected objects", () => {
   const talks = [
-    [
-      "TZ Lyon",
-      "28/04/2023",
-      "video",
-      "Comment gérer des journées de 35h ?",
-      "https://www.youtube.com/watch?v=GTFFqzAvZlg",
-      "Sylvain Gougouzian",
-      "Alien",
-      "",
-      "00:32:51",
-    ],
+    validTalk(),
     [
       "TZ Paris",
       "28/04/2023",
@@ -55,19 +60,8 @@ test("talks are mapped to expected objects", () => {
 
 ["", null, undefined, "invalid"].forEach((testCase) => {
   test(`Invalid duration (${testCase}) is mapped as null`, () => {
-    const talks = [
-      [
-        "TZ Lyon",
-        "28/04/2023",
-        "video",
-        "Comment gérer des journées de 35h ?",
-        "https://www.youtube.com/watch?v=GTFFqzAvZlg",
-        "Sylvain Gougouzian",
-        "Alien",
-        "",
-        testCase,
-      ],
-    ];
+    let talk = validTalk({ duration: testCase });
+    const talks = [talk];
     const mappedTalks = apiTalksToDTO(talks);
     assert.deepEqual(mappedTalks.talks, [
       {
@@ -83,4 +77,23 @@ test("talks are mapped to expected objects", () => {
     ]);
     assert.equal(mappedTalks.events.length, 1);
   });
+});
+
+test("events are aggregated and sorted alphabetically", () => {
+  const talks = [validTalk({ event: "foo" }), validTalk({ event: "bar" })];
+
+  const mappedTalks = apiTalksToDTO(talks);
+
+  assert.deepEqual(mappedTalks.events, [
+    { value: "bar", label: "bar" },
+    { value: "foo", label: "foo" },
+  ]);
+});
+
+test("events are deduplicated", () => {
+  const talks = [validTalk({ event: "foo" }), validTalk({ event: "foo" })];
+
+  const mappedTalks = apiTalksToDTO(talks);
+
+  assert.deepEqual(mappedTalks.events, [{ value: "foo", label: "foo" }]);
 });

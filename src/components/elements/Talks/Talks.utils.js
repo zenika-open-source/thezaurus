@@ -1,8 +1,7 @@
-export function transformToSelectOptions(a) {
-  a.sort();
-  return [...new Set(a)].map((v) => {
-    return { value: v, label: v };
-  });
+function transformToSelectOptions(talks, property) {
+  return [...new Set(talks.map((t) => t[property]).flat())]
+    .sort()
+    .map((v) => ({ value: v, label: v }));
 }
 
 export function cleanSelectedValues(e) {
@@ -32,10 +31,6 @@ export function hasValues(values, obj, prop) {
 
 function splitList(commaSeparatedString) {
   return commaSeparatedString?.split(",").map((x) => x.trim()) || [];
-}
-
-function uniqueValuesForProperty(talks, property) {
-  return [...new Set(talks.map((t) => t[property]).flat())];
 }
 
 const durationFormat = /\d\d:\d\d:\d\d/;
@@ -72,12 +67,10 @@ export function apiTalksToDTO(fetchedTalks) {
     })
     .filter((talk) => talk);
   return {
-    events: transformToSelectOptions(uniqueValuesForProperty(talks, "event")),
-    formats: transformToSelectOptions(uniqueValuesForProperty(talks, "format")),
-    authors: transformToSelectOptions(uniqueValuesForProperty(talks, "author")),
-    ressources: transformToSelectOptions(
-      uniqueValuesForProperty(talks, "ressource")
-    ),
+    events: transformToSelectOptions(talks, "event"),
+    formats: transformToSelectOptions(talks, "format"),
+    authors: transformToSelectOptions(talks, "author"),
+    ressources: transformToSelectOptions(talks, "ressource"),
     talks,
   };
 }
