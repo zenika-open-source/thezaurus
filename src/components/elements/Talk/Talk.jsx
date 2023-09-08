@@ -2,6 +2,7 @@ import { Nunito } from "next/font/google";
 import IconFormation from "@/components/icons/Formation";
 import IconPublic from "@/components/icons/Public";
 import IconVideo from "@/components/icons/Video";
+import Duration from "@/components/elements/Duration/Duration";
 import IconTalk from "@/components/icons/Talk";
 import IconView from "@/components/icons/View";
 import Ressource from "@/components/elements/Ressource/Ressource";
@@ -37,13 +38,15 @@ function Talk(props) {
 
   return (
     <article className="talk rounded-lg shadow-lg w-full border border-slate-50 text-sm flex flex-col h-56">
-      <header className="flex items-stretch">
-        <div className="pl-3 py-1 mr-[-5px] flex-grow text-sm font-medium border-b">
+      <header className="flex items-stretch border-b">
+        <div className="pl-3 py-1 mr-[-5px] flex-grow text-sm font-medium ">
           {talk.ressource.map((ressource, i) => <Ressource ressource={ressource} key={i} className="mr-5"/>)}
         </div>
+    {talk.duration &&
         <aside className="px-2 py-1 flex items-center rounded-bl-md rounded-tr-lg">
-          <ul className="list-format flex flex-row justify-between text-white">{listFormat}</ul>
+        <Duration duration={talk.duration}></Duration>
         </aside>
+    }
       </header>
       <section className="px-3 py-2 relative flex-grow flex flex-col justify-between">
         <button
@@ -56,7 +59,6 @@ function Talk(props) {
         <h3 className={`${nunito.className} text-xl leading-6 line-clamp-4`} title={talk.title}>
           {talk.title}
         </h3>
-        {talk.duration && <p>Durée: {talk.duration}</p>}
         <p className="max-w-[90%] pl-1 text-sm font-medium line-clamp-2" title={authors}>{authors}</p>
       </section>
       <footer className="pl-3 pr-2 py-1 text-xs font-medium border-t flex justify-between items-center">
