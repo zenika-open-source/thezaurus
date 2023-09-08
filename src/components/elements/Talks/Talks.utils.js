@@ -42,7 +42,9 @@ function formatDuration(duration) {
   if (match.groups.hours === "00") {
     return `${match.groups.minutes}:${match.groups.seconds}`;
   }
-  return duration;
+  return `${Number(match.groups.hours)}:${match.groups.minutes}:${
+    match.groups.seconds
+  }`;
 }
 
 export function apiTalksToDTO(fetchedTalks) {

@@ -76,7 +76,7 @@ test(`Duration under 1 hour is returned as minutes:seconds`, () => {
 test(`Duration above 1 hour is returned as hours:minutes:seconds`, () => {
   const talks = [validTalk({ duration: "01:32:05" })];
   const mappedTalks = apiTalksToDTO(talks);
-  assert.equal(mappedTalks.talks[0].duration, "01:32:05");
+  assert.equal(mappedTalks.talks[0].duration, "1:32:05");
 });
 
 test("events are aggregated and sorted alphabetically", () => {
