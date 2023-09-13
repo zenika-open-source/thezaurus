@@ -3,22 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --color-primary1: hwb(354 13% 7%);
-  --color-primary2: #1e1e1e;
-  --color-primary3: #ffffff;
-  --color-primary4: #f2f2f2;
-  --color-secondary1: #f4c042;
-  --color-secondary2: #a188ef;
-  --color-secondary3: #4ca8e7;
-  --color-secondary4: #00eb84;
+  --color-red: rgba(255,0,0,1);
+  --color-turquoise: #00E5CE;
+  --color-green: #02EA84;
 
   font-family: "Open Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: var(--color-primary3);
-  background-color: var(--color-primary2);
+  @apply bg-gray-900 text-white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -36,7 +30,7 @@ body > div {
 }
 
 a {
-  color: var(--color-secondary2);
+  @apply text-purple-300;
 }
 
 a:hover {
@@ -44,7 +38,7 @@ a:hover {
 }
 
 h1 {
-  color: var(--color-primary1);
+  @apply text-red-900;
   font-weight: 700;
 }
 
@@ -54,73 +48,34 @@ h2 {
 
 .jumbo,
 main > footer {
-  background-color: var(--color-primary4);
-  color: var(--color-primary2);
-}
-
-.button {
-  color: var(--color-primary2);
-}
-.button:hover {
-  text-decoration: none;
-}
-
-button:hover::after,
-.button:hover::after {
-  position: absolute;
-  content: "";
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.connexion {
-  background-color: var(--color-primary1);
-  color: var(--color-primary3);
-  position: relative;
+  @apply text-gray-900 bg-gray-100;
 }
 
 .description {
-  @apply bg-green-200 dark:bg-green-900;
+  @apply bg-green-100 dark:bg-green-900;
 }
 .description svg {
   display: inline-block;
 }
 
-.talk header ul.list-format {
-  list-style: none;
-}
-
-.talk header aside {
-  color: var(--color-primary3);
-  background-color: var(--color-secondary1);
-}
-
-.talk .event {
-  @apply py-1;
-  color: var(--color-secondary3);
-  border: 1px var(--color-secondary3);
-}
-
-.talk section h3 {
-  font-weight: 600;
-  color: var(--color-primary1);
+.button {
+  @apply rounded-md py-2 px-8 font-semibold items-center gap-2 text-black bg-green-900 cursor-pointer
 }
 
 .button-primary {
-  @apply rounded-md py-2 px-8 font-semibold items-center gap-2;
-  background-color: var(--color-secondary4);
-  color: #000000;
-  height: 2rem;
-  cursor: pointer;
-  display: inline-flex;
+  @apply h-8 inline-flex;
 }
 
 .button-primary:hover {
-  background: radial-gradient(#00E5CE, #02EA84);
-  text-decoration: underline;
+  background: radial-gradient(var(--color-turquoise), var(--color-green));
+}
+
+.button-nav {
+  @apply bg-red-900 text-white ml-auto;
+}
+
+.button-nav:hover {
+  background: radial-gradient(circle, var(--color-red) 61%, rgba(255,0,0,0.4556023092830882) 100%);
 }
 
 .card__header {
@@ -132,11 +87,12 @@ details summary {
 }
 
 #loading {
+  @apply block;
   display: block;
   margin: 20px auto;
   width: 100px;
   height: 100px;
-  border: 5px solid rgba(238, 34, 56, 0.5);
+  border: 5px solid var(--color-red);
   border-radius: 50%;
   border-top-color: #fff;
   animation: spin 1s ease-in-out infinite;
@@ -156,8 +112,7 @@ details summary {
 
 @media (prefers-color-scheme: light) {
   :root {
-    background-color: var(--color-primary3);
-    color: var(--color-primary2);
+    @apply bg-white text-gray-900;
   }
 }
 
@@ -170,7 +125,6 @@ details summary {
     @apply bg-gray-400;
   }
 }
-
 .my-react-select-container .my-react-select__control {
   @apply bg-white dark:bg-neutral-700 border-2 border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-500;
 }

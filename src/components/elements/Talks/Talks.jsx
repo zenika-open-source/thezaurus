@@ -78,7 +78,7 @@ function Talks() {
         </label>
         <div className="flex items-end">
           <a
-            className="button-primary items-center gap-2"
+            className="button-primary button items-center gap-2"
             title="ajouter un talk"
             href="https://docs.google.com/forms/d/e/1FAIpQLSfF99AC8fEKcXXF6z-gZMeCCtSGyUvQYxjO03Z1SkP2k3yNrg/viewform"
             target="_blank"

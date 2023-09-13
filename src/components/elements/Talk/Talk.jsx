@@ -57,7 +57,7 @@ function Talk(props) {
             target="__blank"
             rel="noopener"
             href={talk.link}
-            className="button-primary"
+            className="button button-primary"
           >
             <IconView width={24}></IconView>
             <span>Play</span>
