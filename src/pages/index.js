@@ -51,7 +51,7 @@ export default function Index() {
           </Link>
         </header>
 
-        <section className="description text-center text-sm mx-auto my-2 p-2 rounded-md">
+        <section className="description text-center text-sm mx-auto my-2 p-2 rounded-md cursor-pointer">
           <details open={!diffusionMessageRead}>
             <summary className="text-lg mb" onClick={setDiffusionMessageAsRead}>
               👩‍⚖️ --{" "}
