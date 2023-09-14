@@ -44,9 +44,9 @@ function Talk(props) {
       </header>
       <section className={`${xPadding} ${yPadding}`}>
         <h2
-          className="h-20"
+          className="h-20 line-clamp-4 leading-6"
           style={{
-            maxHeight: "5rem",
+            maxHeight: "4.2rem",
           }}
         >
           {talk.title}
