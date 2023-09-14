@@ -28,9 +28,9 @@ function Talks() {
     });
   }, []);
 
-  const talks = state.talks?.map((talk, i) => {
-    return <Talk key={`talk_${i}`} talk={talk} />;
-  });
+  const talks = state.talks?.map((talk, i) => (
+    <Talk key={`talk_${i}`} talk={talk} />
+  ));
 
   return (
     <div className="flex-grow">
