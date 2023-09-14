@@ -1,5 +1,4 @@
 import IconMapPin from "../../icons/MapPin";
-import IconClock from "../../icons/Clock";
 import IconMicrophone from "../../icons/Microphone";
 import IconCalendar from "../../icons/Calendar";
 import IconStopwatch from "../../icons/Stopwatch";
@@ -10,7 +9,6 @@ function renderIcon(icon) {
   const iconWidth = 16;
   const icons = {
     mapPin: <IconMapPin width={iconWidth} />,
-    clock: <IconClock width={iconWidth} />,
     talk: <IconMicrophone width={iconWidth} />,
     calendar: <IconCalendar width={iconWidth} />,
     stopwatch: <IconStopwatch width={iconWidth} />,
