@@ -39,12 +39,11 @@ function formatDuration(duration) {
   if (!match) {
     return null;
   }
-  if (match.groups.hours === "00") {
-    return `${match.groups.minutes}:${match.groups.seconds}`;
+  const { hours, minutes, seconds } = match.groups;
+  if (hours === "00") {
+    return `${minutes}:${seconds}`;
   }
-  return `${Number(match.groups.hours)}:${match.groups.minutes}:${
-    match.groups.seconds
-  }`;
+  return `${Number(hours)}:${minutes}:${seconds}`;
 }
 
 export function apiTalksToDTO(fetchedTalks) {
