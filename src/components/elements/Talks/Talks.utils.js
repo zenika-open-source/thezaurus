@@ -34,7 +34,8 @@ function splitList(commaSeparatedString) {
 }
 
 function formatDuration(duration) {
-  const durationFormat = /(?<hours>\d\d):(?<minutes>\d\d):(?<seconds>\d\d)/;
+  const durationFormat =
+    /(?<hours>[0-9][0-9]):(?<minutes>[0-5][0-9]):(?<seconds>[0-5][0-9])/;
   const match = durationFormat.exec(duration);
   if (!match) {
     return null;

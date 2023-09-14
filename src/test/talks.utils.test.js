@@ -58,7 +58,7 @@ test("talks are mapped to expected objects", () => {
   assert.equal(mappedTalks.events.length, 2);
 });
 
-["", null, undefined, "invalid"].forEach((testCase) => {
+["", null, undefined, "invalid", "00:69:00", "00:01:70"].forEach((testCase) => {
   test(`Invalid duration (${testCase}) is mapped as null`, () => {
     let talk = validTalk({ duration: testCase });
     const talks = [talk];
