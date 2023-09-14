@@ -50,6 +50,7 @@ h1 {
 
 h2 {
   font-weight: 600;
+  font-size: 20px;
 }
 
 .jumbo,
@@ -123,8 +124,22 @@ button:hover::after,
   text-decoration: underline;
 }
 
+.pill {
+  color: #ffffff;
+  @apply px-2 whitespace-nowrap inline-block rounded-full bg-violet-300;
+}
+
 .card__header {
+  padding: 15px;
   @apply flex items-stretch bg-gray-100 rounded-t-lg;
+}
+
+.card__body {
+  padding: 15px;
+}
+
+.card__footer {
+  padding: 0 16px 16px 16px;
 }
 
 details summary {
@@ -163,11 +178,16 @@ details summary {
 
 @media (prefers-color-scheme: dark) {
   .card {
-    @apply bg-gray-500;
+    background-color: #292929;
   }
 
   .card__header {
-    @apply bg-gray-400;
+    background-color: #4b4b4b;
+    color: #ffffff;
+  }
+
+  .pill {
+    color: #000000;
   }
 }
 
