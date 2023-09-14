@@ -38,11 +38,11 @@ a:hover {
 }
 
 h1 {
-  @apply text-red-900 font-weight-bold;
+  @apply font-bold;
 }
 
 h2 {
-  @apply text-red-900 font-weight-semibold;
+  @apply font-semibold;
 }
 
 .jumbo,
