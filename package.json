@@ -2,7 +2,10 @@
   "name": "thezaurus",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "prettier": "./prettierrc.json",
   "scripts": {
+    "test": "node --test",
     "dev": "next dev",
     "dev_newrelic": "NODE_OPTIONS='-r dotenv/config -r @newrelic/next' next dev",
     "build": "next build",
@@ -22,6 +25,7 @@
     "newrelic": "^10.6.1",
     "next": "13.3.0",
     "postcss": "8.4.22",
+    "prettier": "^3.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-select": "^5.7.3",

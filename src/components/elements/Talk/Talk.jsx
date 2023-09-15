@@ -1,69 +1,75 @@
-import { Nunito } from "next/font/google";
-import IconFormation from "@/components/icons/Formation";
-import IconPublic from "@/components/icons/Public";
-import IconVideo from "@/components/icons/Video";
-import IconTalk from "@/components/icons/Talk";
-import IconView from "@/components/icons/View";
-import Ressource from "@/components/elements/Ressource/Ressource";
-import IconMapPin from "@/components/icons/MapPin";
-const nunito = Nunito({ subsets: ["latin"] });
+import HeaderIcon from "../HeaderIcon/HeaderIcon";
+import Resource from "../Ressource/Ressource";
+import IconView from "../../icons/View";
+import { Nunito, Open_Sans } from "next/font/google";
 
+const nunito = Nunito({ subsets: ["latin"] });
+const openSans = Open_Sans({ subsets: ["latin"] });
 function Talk(props) {
   const talk = props.talk;
 
-  const emojiFormat = {
-    formation: (
-      <span title="formation">
-        <IconFormation />
-      </span>
-    ),
-    public: (
-      <span title="public">
-        <IconPublic />
-      </span>
-    ),
-    video: (
-      <span title="video">
-        <IconVideo />
-      </span>
-    ),
-  };
-  const listFormat = talk.format.map((f) => (
-    <li key={f.toString()} className="mx-1">
-      {emojiFormat[f] || IconTalk}
-    </li>
-  ));
   const authors = talk.author.join(", ");
-
   return (
-    <article className="talk rounded-lg shadow-lg w-full border border-slate-50 text-sm flex flex-col h-56">
-      <header className="flex items-stretch">
-        <div className="pl-3 py-1 mr-[-5px] flex-grow text-sm font-medium border-b">
-          {talk.ressource.map((ressource, i) => <Ressource ressource={ressource} key={i} className="mr-5"/>)}
-        </div>
-        <aside className="px-2 py-1 flex items-center rounded-bl-md rounded-tr-lg">
-          <ul className="list-format flex flex-row justify-between text-white">{listFormat}</ul>
-        </aside>
+    <article
+      className={`card rounded-lg shadow-lg w-full flex flex-col ${nunito.className}`}
+    >
+      <header className={`card__header ${openSans.className}`}>
+        <ul className="flex w-3/5 gap-8">
+          {talk.format.map((fmt, i) => {
+            const format = fmt === "video" ? "talk" : fmt;
+            return (
+              <li key={i}>
+                <HeaderIcon icon={format} text={format} />
+              </li>
+            );
+          })}
+          {talk.duration && (
+            <li>
+              <HeaderIcon icon="stopwatch" text={talk.duration} />
+            </li>
+          )}
+        </ul>
+        <ul className="flex flex-row-reverse w-2/5 gap-1">
+          {talk.ressource.map((resource, i) => (
+            <li key={i}>
+              <Resource ressource={resource}></Resource>
+            </li>
+          ))}
+        </ul>
       </header>
-      <section className="px-3 py-2 relative flex-grow flex flex-col justify-between">
-        <button
-          className="absolute w-10 h-10 bottom-2 right-2 flex items-center justify-center"
-          title="Voir le talk"
-          onClick={() => window.open(talk.link, "_blank")}
+      <section className="card__body">
+        <h2
+          className="h-20 line-clamp-4 leading-6"
+          style={{
+            maxHeight: "4.2rem",
+          }}
         >
-          <IconView width={33}/>
-        </button>
-        <h3 className={`${nunito.className} text-xl leading-6 line-clamp-4`} title={talk.title}>
           {talk.title}
-        </h3>
-        <p className="max-w-[90%] pl-1 text-sm font-medium line-clamp-2" title={authors}>{authors}</p>
-      </section>
-      <footer className="pl-3 pr-2 py-1 text-xs font-medium border-t flex justify-between items-center">
-        <div className="flex event">
-          <IconMapPin width={16} />
-          <span className="ml-1">{talk.event}</span>
+        </h2>
+        <div className="flex pt-3">
+          <p className="w-4/5" style={{ fontSize: "15px" }}>
+            {authors}
+          </p>
         </div>
-        <span className="date">{talk.date}</span>
+      </section>
+      <footer
+        className={`card__footer justify-between flex gap-8 ${openSans.className}`}
+      >
+        <div className="flex gap-8" style={{ fontSize: "13px" }}>
+          <HeaderIcon icon="calendar" text={talk.date} />
+          <HeaderIcon icon="mapPin" text={talk.event} />
+        </div>
+        <div>
+          <a
+            target="__blank"
+            rel="noopener"
+            href={talk.link}
+            className={`button-primary ${nunito.className}`}
+          >
+            <IconView width={24}></IconView>
+            <span>Play</span>
+          </a>
+        </div>
       </footer>
     </article>
   );

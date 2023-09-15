@@ -1,8 +1,7 @@
-export function transformToSelectOptions(a) {
-  a.sort();
-  return [...new Set(a)].map((v) => {
-    return { value: v, label: v };
-  });
+function transformToSelectOptions(talks, property) {
+  return [...new Set(talks.map((t) => t[property]).flat())]
+    .sort()
+    .map((v) => ({ value: v, label: v }));
 }
 
 export function cleanSelectedValues(e) {
@@ -30,26 +29,28 @@ export function hasValues(values, obj, prop) {
   return found;
 }
 
+function splitList(commaSeparatedString) {
+  return commaSeparatedString?.split(",").map((x) => x.trim()) || [];
+}
+
+function formatDuration(duration) {
+  const durationFormat =
+    /(?<hours>[0-9][0-9]):(?<minutes>[0-5][0-9]):(?<seconds>[0-5][0-9])/;
+  const match = durationFormat.exec(duration);
+  if (!match) {
+    return null;
+  }
+  const { hours, minutes, seconds } = match.groups;
+  if (hours === "00") {
+    return `${minutes}:${seconds}`;
+  }
+  return `${Number(hours)}:${minutes}:${seconds}`;
+}
+
 export function apiTalksToDTO(fetchedTalks) {
-  let events = [];
-  let formats = [];
-  let authors = [];
-  let ressources = [];
-  let talks = [];
-  fetchedTalks.map((talk) => {
-    const event = talk[0];
-    const date = talk[1];
-    const format = talk[2]?.split(",").map((x) => x.trim());
-    const title = talk[3];
-    const link = talk[4];
-    const author = talk[5]?.split(",").map((x) => x.trim());
-    const ressource = talk[6]?.split(",").map((x) => x.trim());
-    if (title != "" && format) {
-      events.push(event);
-      format?.map((f) => formats.push(f));
-      author?.map((a) => authors.push(a));
-      ressource?.map((r) => ressources.push(r));
-      talks.push({
+  const talks = fetchedTalks
+    .map((talk) => {
+      const [
         event,
         date,
         format,
@@ -57,14 +58,32 @@ export function apiTalksToDTO(fetchedTalks) {
         link,
         author,
         ressource,
-      });
-    }
-  });
+        _email,
+        duration,
+      ] = talk;
+      if (title === "" || !format) {
+        return null;
+      }
+      const formats = splitList(format);
+      const authors = splitList(author);
+      const ressources = splitList(ressource);
+      return {
+        event,
+        date,
+        format: formats,
+        title,
+        link,
+        author: authors,
+        ressource: ressources,
+        duration: formatDuration(duration),
+      };
+    })
+    .filter((talk) => talk);
   return {
-    events: transformToSelectOptions(events),
-    formats: transformToSelectOptions(formats),
-    authors: transformToSelectOptions(authors),
-    ressources: transformToSelectOptions(ressources),
+    events: transformToSelectOptions(talks, "event"),
+    formats: transformToSelectOptions(talks, "format"),
+    authors: transformToSelectOptions(talks, "author"),
+    ressources: transformToSelectOptions(talks, "ressource"),
     talks,
   };
 }

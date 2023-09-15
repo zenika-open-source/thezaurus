@@ -28,7 +28,9 @@ function Talks() {
     });
   }, []);
 
-  const talks = state.talks?.map((talk, i) => <Talk key={`talk_${i}`} talk={talk} />);
+  const talks = state.talks?.map((talk, i) => (
+    <Talk key={`talk_${i}`} talk={talk} />
+  ));
 
   return (
     <div className="flex-grow">
@@ -74,26 +76,29 @@ function Talks() {
             }
           />
         </label>
-            <a
-                className="contribute button text-black py-2 px-8 mt-3 lg:mt0 self-end justify-self-center relative flex items-center justify-center"
-                title="ajouter un talk"
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfF99AC8fEKcXXF6z-gZMeCCtSGyUvQYxjO03Z1SkP2k3yNrg/viewform"
-                target="_blank"
-                rel="noopener"
-            >
-                <IconContribute width={22} />
-                <p className="ml-2 font-semibold">Contribuer</p>
-            </a>
+        <div className="flex items-end">
+          <a
+            className="button-primary items-center gap-2"
+            title="ajouter un talk"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfF99AC8fEKcXXF6z-gZMeCCtSGyUvQYxjO03Z1SkP2k3yNrg/viewform"
+            target="_blank"
+            rel="noopener"
+          >
+            <IconContribute width={24} />
+            <span>Contribuer</span>
+          </a>
+        </div>
       </form>
       {isLoading && <Spinner />}
-      <section className={
-          ['w-11/12 mx-auto my-8',
-          'grid gap-8',
-          'md:grid-cols-2 md:gap-10',
-          '2xl:grid-cols-3 2xl:gap-12',
-          '3xl:grid-cols-4',
-          '4xl:gap-16'
-          ].join(' ')}>
+      <section
+        className={[
+          "w-11/12 mx-auto my-8",
+          "grid gap-8",
+          "md:grid-cols-2 md:gap-10",
+          "2xl:grid-cols-3 2xl:gap-12",
+          "4xl:gap-16",
+        ].join(" ")}
+      >
         {talks}
       </section>
     </div>

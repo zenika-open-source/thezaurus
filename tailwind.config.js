@@ -9,9 +9,9 @@ module.exports = {
     extend: {
       screens: {
         "3xl": "1900px",
-        "4xl": "2300px"
-      }
-    }
+        "4xl": "2300px",
+      },
+    },
   },
   plugins: [],
 };
