@@ -41,7 +41,22 @@ GOOGLE_CLIENT_PRIVATE_KEY = ""
 NEW_RELIC_LICENSE_KEY = ""
 ```
 
-
 ## Deploy to Google Cloud Run
 
 [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
+
+### Alternative manual deployment
+
+You will need the [`gcloud` cli](https://cloud.google.com/sdk/docs/install) installed.
+
+Log into the google cloud cli `gcloud auth login`
+
+Run the following which will build and deploy the docker image.
+
+```bash
+npm run build
+npm run docker-build
+npm run gcp-push
+```
+
+Follow the instructions in [this google doc](https://docs.google.com/document/d/1FMLZWCNmCYxix0cRr0Ars0UnaZvoQQpRdRNnXGIzKOo/edit) to deploy the latest image
