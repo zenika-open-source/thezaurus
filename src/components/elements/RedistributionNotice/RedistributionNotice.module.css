@@ -1,0 +1,14 @@
+.info {
+  position: fixed;
+  top: 70%;
+  animation: fadeIn 0.6s ease normal;
+}
+
+@keyframes fadeIn{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

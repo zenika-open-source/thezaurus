@@ -129,17 +129,12 @@ button:hover::after,
   @apply px-2 whitespace-nowrap inline-block rounded-full bg-violet-300;
 }
 
-.card__header {
-  padding: 15px;
-  @apply flex items-stretch bg-gray-100 rounded-t-lg;
+.card {
+  @apply rounded-lg shadow-lg
 }
 
 .card__body {
   padding: 15px;
-}
-
-.card__footer {
-  padding: 0 16px 16px 16px;
 }
 
 details summary {

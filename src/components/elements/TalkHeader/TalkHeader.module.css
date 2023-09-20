@@ -1,0 +1,4 @@
+.card__header {
+  padding: 15px;
+  @apply flex items-stretch bg-gray-100 rounded-t-lg;
+}
