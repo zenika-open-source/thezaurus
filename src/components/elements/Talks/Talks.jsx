@@ -100,7 +100,7 @@ function Talks() {
               <a
                 className="button-primary"
                 title="ajouter un talk"
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfF99AC8fEKcXXF6z-gZMeCCtSGyUvQYxjO03Z1SkP2k3yNrg/viewform"
+                href={`${process.env.NEXT_PUBLIC_CONTRIBUTE_URL}`}
                 target="_blank"
                 rel="noopener"
               >
