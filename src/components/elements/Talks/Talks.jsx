@@ -71,56 +71,54 @@ function Talks() {
           />
         </label>
       </form>
+      <div
+        className="mx-auto w-11/12 "
+        style={{
+          gridTemplateAreas: ". results contribute",
+          gridTemplateRows: "auto",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          display: "grid",
+        }}
+      >
+        <p
+          className="flex justify-center items-center font-bold"
+          style={{ gridColumn: "2" }}
+        >
+          {state.talks.length} résultat(s)
+        </p>
+        <div
+          style={{
+            gridColumn: "3",
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
+          <a
+            className="button-primary"
+            title="ajouter un talk"
+            href={`${process.env.NEXT_PUBLIC_CONTRIBUTE_URL}`}
+            target="_blank"
+            rel="noopener"
+          >
+            <IconContribute width={24} />
+            <span>Contribuer</span>
+          </a>
+        </div>
+      </div>
       {isLoading ? (
         <Spinner />
       ) : (
-        <>
-          <div
-            className="mx-auto w-11/12 "
-            style={{
-              gridTemplateAreas: ". results contribute",
-              gridTemplateRows: "auto",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              display: "grid",
-            }}
-          >
-            <p
-              className="flex justify-center items-center font-bold"
-              style={{ gridColumn: "2" }}
-            >
-              {state.talks.length} résultat(s)
-            </p>
-            <div
-              style={{
-                gridColumn: "3",
-                display: "flex",
-                justifyContent: "flex-end",
-              }}
-            >
-              <a
-                className="button-primary"
-                title="ajouter un talk"
-                href={`${process.env.NEXT_PUBLIC_CONTRIBUTE_URL}`}
-                target="_blank"
-                rel="noopener"
-              >
-                <IconContribute width={24} />
-                <span>Contribuer</span>
-              </a>
-            </div>
-          </div>
-          <section
-            className={[
-              "w-11/12 mx-auto my-8",
-              "grid gap-8",
-              "md:grid-cols-2 md:gap-10",
-              "2xl:grid-cols-3 2xl:gap-12",
-              "4xl:gap-16",
-            ].join(" ")}
-          >
-            {talks}
-          </section>
-        </>
+        <section
+          className={[
+            "w-11/12 mx-auto my-8",
+            "grid gap-8",
+            "md:grid-cols-2 md:gap-10",
+            "2xl:grid-cols-3 2xl:gap-12",
+            "4xl:gap-16",
+          ].join(" ")}
+        >
+          {talks}
+        </section>
       )}
     </div>
   );
