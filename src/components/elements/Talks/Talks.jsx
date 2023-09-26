@@ -84,7 +84,7 @@ function Talks() {
           className="flex justify-center items-center font-bold"
           style={{ gridColumn: "2" }}
         >
-          {state.talks.length} résultat(s)
+          {state.talks?.length || 0} résultat(s)
         </p>
         <div
           style={{
