@@ -22,7 +22,7 @@ function renderIcon(icon) {
 
 function HeaderIcon(props) {
   return (
-    <div className={`flex items-center ${props.className}`}>
+    <div className={`flex items-center ${props.className || ""}`}>
       {renderIcon(props.icon)}
       <span className="ml-1 capitalize">{props.text}</span>
     </div>

@@ -90,15 +90,6 @@ button:hover::after,
   display: inline-block;
 }
 
-.talk header ul.list-format {
-  list-style: none;
-}
-
-.talk header aside {
-  color: var(--color-primary3);
-  background-color: var(--color-secondary1);
-}
-
 .talk .event {
   @apply py-1;
   color: var(--color-secondary3);
@@ -174,11 +165,6 @@ details summary {
 @media (prefers-color-scheme: dark) {
   .card {
     background-color: #292929;
-  }
-
-  .card__header {
-    background-color: #4b4b4b;
-    color: #ffffff;
   }
 
   .pill {
