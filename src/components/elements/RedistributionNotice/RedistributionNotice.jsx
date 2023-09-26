@@ -1,7 +1,13 @@
 import IconPublic from "@/components/icons/Public";
 import styles from "./RedistributionNotice.module.css";
+import useLocalStorageOnce from "@/hooks/useLocalStorageOnce";
 
 export default function RedistributionNotice({ dialogRef }) {
+  const [usageWarningRead, setUsageWarningRead] = useLocalStorageOnce(
+    false,
+    "usageWarningRead",
+  );
+
   return (
     <div>
       <div
@@ -16,8 +22,14 @@ export default function RedistributionNotice({ dialogRef }) {
       >
         <dialog
           className={`card ${styles.info}`}
+          open={!usageWarningRead}
+          onClick={() => {
+            if (!usageWarningRead) {
+              setUsageWarningRead();
+            }
+            dialogRef.current.close();
+          }}
           ref={dialogRef}
-          onClick={() => dialogRef.current.close()}
         >
           <h2>Rappel: diffusion interne uniquement</h2>
           <div className="p-2">

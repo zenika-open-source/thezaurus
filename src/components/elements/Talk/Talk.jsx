@@ -11,12 +11,7 @@ function Talk(props) {
       <Card>
         <TalkHeader talk={talk}></TalkHeader>
         <section className="card__body">
-          <h2
-            className="h-20 line-clamp-4 leading-6"
-            style={{
-              maxHeight: "4.2rem",
-            }}
-          >
+          <h2 className="h-20 line-clamp-4 leading-6 max-h[4.2rem]">
             {talk.title}
           </h2>
           <div className="flex pt-3">
