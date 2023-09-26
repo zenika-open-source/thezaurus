@@ -1,0 +1,11 @@
+.card__header {
+  padding: 15px;
+  @apply flex items-stretch bg-gray-100 rounded-t-lg;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card__header {
+    background-color: #4b4b4b;
+    color: #ffffff;
+  }
+}

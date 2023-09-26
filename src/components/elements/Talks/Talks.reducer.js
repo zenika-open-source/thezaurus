@@ -14,7 +14,6 @@ const reducer = (state = INITIAL_STATE, action) => {
     case "format":
     case "ressource":
       const filters = { ...state.filters, [action.type]: action.payload };
-      console.log(filters);
       let talks = state.initialTalks;
       for (const [key, values] of Object.entries(filters)) {
         talks = talks.filter((talk) => hasValues(values, talk, key));
