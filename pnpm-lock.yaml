@@ -11,6 +11,12 @@ dependencies:
   '@newrelic/next':
     specifier: ^0.5.2
     version: 0.5.2(newrelic@10.6.1)
+  '@zenika/internal-ui-components':
+    specifier: ^0.0.1
+    version: 0.0.1
+  '@zenika/internal-ui-components-react':
+    specifier: ^1.0.0
+    version: 1.0.0
   autoprefixer:
     specifier: 10.4.14
     version: 10.4.14(postcss@8.4.22)
@@ -1462,6 +1468,12 @@ packages:
       tslib: 2.5.3
     dev: false
 
+  /@stencil/core@4.3.0:
+    resolution: {integrity: sha512-WYjftKg5fuqO7mf3nTl1aCRurkeMmfEF38WcBG4VLF6UPQ+MA76/koedGR2LGhATGByx+pbxR4iRxAr2Bspc9A==}
+    engines: {node: '>=16.0.0', npm: '>=7.10.0'}
+    hasBin: true
+    dev: false
+
   /@swc/helpers@0.4.14:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
@@ -1594,6 +1606,18 @@ packages:
 
   /@tyriar/fibonacci-heap@2.0.9:
     resolution: {integrity: sha512-bYuSNomfn4hu2tPiDN+JZtnzCpSpbJ/PNeulmocDy3xN2X5OkJL65zo6rPZp65cPPhLF9vfT/dgE+RtFRCSxOA==}
+    dev: false
+
+  /@zenika/internal-ui-components-react@1.0.0:
+    resolution: {integrity: sha512-YbPM3qRaRMEHxw8vJ6+ieZy9YXwzE6IsOvqNf/5Q4NPDKhrJo7XBlPbF+nW8FG6zBi50oZMqH5N3NLsmi92ZrA==, tarball: https://europe-west9-npm.pkg.dev/thezaurus/zenika-internal/@zenika/internal-ui-components-react/-/@zenika/internal-ui-components-react-1.0.0.tgz}
+    dependencies:
+      '@zenika/internal-ui-components': 0.0.1
+    dev: false
+
+  /@zenika/internal-ui-components@0.0.1:
+    resolution: {integrity: sha512-F2kZywfSdduI56yACNRYvZp1reXSnphCfzT3qAuKmPjtL+jX7flHIvlmGQwoQ3Sy6LAC0A+MdLntv2y8K5D8fA==, tarball: https://europe-west9-npm.pkg.dev/thezaurus/zenika-internal/@zenika/internal-ui-components/-/@zenika/internal-ui-components-0.0.1.tgz}
+    dependencies:
+      '@stencil/core': 4.3.0
     dev: false
 
   /acorn-jsx@5.3.2(acorn@8.8.2):

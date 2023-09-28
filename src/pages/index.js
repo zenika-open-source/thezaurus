@@ -6,10 +6,11 @@ import RedistributionNotice from "@/components/elements/RedistributionNotice/Red
 import Header from "@/components/elements/Header/Header";
 import Footer from "@/components/elements/Footer/Footer";
 import { useRef } from "react";
-import useLocalStorageOnce from "@/hooks/useLocalStorageOnce";
+import { defineCustomElements } from "@zenika/internal-ui-components-react";
 
 const opensans = Open_Sans({ subsets: ["latin"] });
 
+defineCustomElements();
 export default function Index() {
   const { user, error, isLoading } = useUser();
   const dialog = useRef();
@@ -17,16 +18,16 @@ export default function Index() {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
   if (user) {
+    console.log(user);
     return (
       <>
         <main
           className={`${opensans.className} flex flex-col h-full px-2 h-auto`}
         >
           <RedistributionNotice dialogRef={dialog} />
-          <Header />
+          <Header user={user} />
 
           <Talks />
-
           <Footer />
         </main>
       </>

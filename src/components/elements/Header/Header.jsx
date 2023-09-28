@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Head from "next/head";
-import Link from "next/link";
-import IconLogout from "@/components/icons/Logout";
 import { Nunito } from "next/font/google";
 const nunito = Nunito({ subsets: ["latin"] });
+import { ProfileMenu, ProfileLink } from "@zenika/internal-ui-components-react";
 
-export default function Header() {
+export default function Header({ user }) {
   return (
     <>
       <Head>
@@ -13,7 +12,7 @@ export default function Header() {
         <title>TheZaurus</title>
       </Head>
 
-      <header className="py-1 grid grid-cols-[1fr_repeat(1,auto)_1fr] items-center">
+      <header className="py-1 grid grid-cols-[1fr_repeat(1,auto)_1fr] items-center mx-20">
         <div className="col-start-2">
           <h1 className={`text-4xl ${nunito.className} flex justify-center`}>
             <span>The</span>
@@ -24,12 +23,25 @@ export default function Header() {
             Librairie des médias disponibles
           </p>
         </div>
-        <Link
-          className="button connexion rounded-lg ml-auto p-1"
-          href="/api/auth/logout"
+        <div
+          style={{ maxHeight: "100%" }}
+          className="inline-grid justify-items-end z-10"
         >
-          <IconLogout width={30} />
-        </Link>
+          <ProfileMenu
+            name={`${user.given_name} ${user.family_name}`}
+            agency="Zenika"
+            lastLoginDate={`${new Date(user.updated_at).toLocaleDateString(
+              "en-US",
+            )}`}
+            image="https://skillz.zenika.com/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FACg8ocLv5bq7yGiic9T8Hw-A82XGGT7UHwSi68TD5RevIv_Lgg%3Ds96-c&w=128&q=75"
+          >
+            <ProfileLink
+              icon="/logout.svg"
+              text="Logout"
+              href="/api/auth/logout"
+            ></ProfileLink>
+          </ProfileMenu>
+        </div>
       </header>
     </>
   );
