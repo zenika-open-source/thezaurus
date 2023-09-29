@@ -13,7 +13,8 @@
     "lint": "next lint",
     "docker-build": "docker build . -t europe-west1-docker.pkg.dev/thezaurus/thezaurus/thezaurus",
     "gcp-push": "gcloud builds submit --tag europe-west1-docker.pkg.dev/thezaurus/thezaurus/thezaurus --project thezaurus",
-    "setup-registry": "npx google-artifactregistry-auth --repo-config=./.npmrc --credential-config=$HOME/.npmrc"
+    "setup-registry": "npx google-artifactregistry-auth --repo-config=./.npmrc --credential-config=$HOME/.npmrc",
+    "preinstall": "npm run setup-registry"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.6.2",

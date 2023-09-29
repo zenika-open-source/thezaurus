@@ -2,6 +2,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+This project uses the [zenika-internal-ui](https://github.com/Zenika/internal-ui) web components. This is deployed to a private npm registry hosted on GCP
+in the thezaurus project. To install the dependencies you first need to download and log in to the [google cloud cli](https://cloud.google.com/sdk/docs/install).
+
+Once this is done you can run `pnpm install` which should authenticate you against the registry and install the required packages.
+
 First, run the development server:
 
 ```bash
