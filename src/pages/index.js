@@ -7,6 +7,7 @@ import Header from "@/components/elements/Header/Header";
 import Footer from "@/components/elements/Footer/Footer";
 import { useRef } from "react";
 import { defineCustomElements } from "@zenika/internal-ui-components-react";
+import "@zenika/internal-ui-components/dist/zenika-internal-ui/zenika-internal-ui.css";
 
 const opensans = Open_Sans({ subsets: ["latin"] });
 

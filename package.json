@@ -12,13 +12,14 @@
     "start": "NODE_OPTIONS='-r dotenv/config -r @newrelic/next' next start",
     "lint": "next lint",
     "docker-build": "docker build . -t europe-west1-docker.pkg.dev/thezaurus/thezaurus/thezaurus",
-    "gcp-push": "gcloud builds submit --tag europe-west1-docker.pkg.dev/thezaurus/thezaurus/thezaurus --project thezaurus"
+    "gcp-push": "gcloud builds submit --tag europe-west1-docker.pkg.dev/thezaurus/thezaurus/thezaurus --project thezaurus",
+    "setup-registry": "npx google-artifactregistry-auth --repo-config=./.npmrc --credential-config=$HOME/.npmrc"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.6.2",
     "@newrelic/next": "^0.5.2",
-    "@zenika/internal-ui-components": "^0.0.1",
-    "@zenika/internal-ui-components-react": "^1.0.0",
+    "@zenika/internal-ui-components": "^0.0.3",
+    "@zenika/internal-ui-components-react": "^1.0.4",
     "autoprefixer": "10.4.14",
     "dotenv": "^16.3.1",
     "eslint": "8.38.0",

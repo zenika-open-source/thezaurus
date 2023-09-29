@@ -31,12 +31,12 @@ export default function Header({ user }) {
             name={`${user.given_name} ${user.family_name}`}
             agency="Zenika"
             lastLoginDate={`${new Date(user.updated_at).toLocaleDateString(
-              "en-US",
+              "en-GB",
             )}`}
-            image="https://skillz.zenika.com/_next/image?url=https%3A%2F%2Flh3.googleusercontent.com%2Fa%2FACg8ocLv5bq7yGiic9T8Hw-A82XGGT7UHwSi68TD5RevIv_Lgg%3Ds96-c&w=128&q=75"
+            image={user.picture}
           >
             <ProfileLink
-              icon="/logout.svg"
+              icon="logout"
               text="Logout"
               href="/api/auth/logout"
             ></ProfileLink>

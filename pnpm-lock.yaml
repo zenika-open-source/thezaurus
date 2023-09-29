@@ -12,11 +12,11 @@ dependencies:
     specifier: ^0.5.2
     version: 0.5.2(newrelic@10.6.1)
   '@zenika/internal-ui-components':
-    specifier: ^0.0.1
-    version: 0.0.1
+    specifier: ^0.0.3
+    version: 0.0.3
   '@zenika/internal-ui-components-react':
-    specifier: ^1.0.0
-    version: 1.0.0
+    specifier: ^1.0.4
+    version: 1.0.4
   autoprefixer:
     specifier: 10.4.14
     version: 10.4.14(postcss@8.4.22)
@@ -1608,14 +1608,14 @@ packages:
     resolution: {integrity: sha512-bYuSNomfn4hu2tPiDN+JZtnzCpSpbJ/PNeulmocDy3xN2X5OkJL65zo6rPZp65cPPhLF9vfT/dgE+RtFRCSxOA==}
     dev: false
 
-  /@zenika/internal-ui-components-react@1.0.0:
-    resolution: {integrity: sha512-YbPM3qRaRMEHxw8vJ6+ieZy9YXwzE6IsOvqNf/5Q4NPDKhrJo7XBlPbF+nW8FG6zBi50oZMqH5N3NLsmi92ZrA==, tarball: https://europe-west9-npm.pkg.dev/thezaurus/zenika-internal/@zenika/internal-ui-components-react/-/@zenika/internal-ui-components-react-1.0.0.tgz}
+  /@zenika/internal-ui-components-react@1.0.4:
+    resolution: {integrity: sha512-tehE7HQlSVTf+B9a7yjbQ34/J7GEecm6amaE13GDouwwaDRp4NV57/ih0Oth8r6soB6DAIuOB2tfqcYPCIJ1Tw==, tarball: https://europe-west9-npm.pkg.dev/thezaurus/zenika-internal/@zenika/internal-ui-components-react/-/@zenika/internal-ui-components-react-1.0.4.tgz}
     dependencies:
-      '@zenika/internal-ui-components': 0.0.1
+      '@zenika/internal-ui-components': 0.0.3
     dev: false
 
-  /@zenika/internal-ui-components@0.0.1:
-    resolution: {integrity: sha512-F2kZywfSdduI56yACNRYvZp1reXSnphCfzT3qAuKmPjtL+jX7flHIvlmGQwoQ3Sy6LAC0A+MdLntv2y8K5D8fA==, tarball: https://europe-west9-npm.pkg.dev/thezaurus/zenika-internal/@zenika/internal-ui-components/-/@zenika/internal-ui-components-0.0.1.tgz}
+  /@zenika/internal-ui-components@0.0.3:
+    resolution: {integrity: sha512-vtBZU3mD7yMP79LH2qxRMp5aNtUzRmEUPz3DW0h/vITHjUmwf0fESF6TbnPibi6R9dNaYXZHUJkpmdgyCHA0YQ==, tarball: https://europe-west9-npm.pkg.dev/thezaurus/zenika-internal/@zenika/internal-ui-components/-/@zenika/internal-ui-components-0.0.3.tgz}
     dependencies:
       '@stencil/core': 4.3.0
     dev: false
