@@ -6,7 +6,7 @@ import styles from "./TalkFooter.module.css";
 const nunito = Nunito({ subsets: ["latin"] });
 const openSans = Open_Sans({ subsets: ["latin"] });
 
-export default function ({ talk }) {
+export default function TalkFooter({ talk }) {
   return (
     <footer
       className={`${styles.card__footer} justify-between flex gap-8 ${openSans.className}`}

@@ -5,7 +5,7 @@ import IconLogout from "@/components/icons/Logout";
 import { Nunito } from "next/font/google";
 const nunito = Nunito({ subsets: ["latin"] });
 
-export default function () {
+export default function Header() {
   return (
     <>
       <Head>
