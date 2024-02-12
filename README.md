@@ -39,6 +39,10 @@ GOOGLE_CLIENT_PRIVATE_KEY = ""
 
 #newrelic (monitoring) license key
 NEW_RELIC_LICENSE_KEY = ""
+
+# Links to GoogleSheets
+CONTRIBUTE_URL = ""
+DOCUMENTATION_URL = ""
 ```
 
 ## Deploy to Google Cloud Run

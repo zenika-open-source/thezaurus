@@ -6,7 +6,6 @@ import RedistributionNotice from "@/components/elements/RedistributionNotice/Red
 import Header from "@/components/elements/Header/Header";
 import Footer from "@/components/elements/Footer/Footer";
 import { useRef } from "react";
-import useLocalStorageOnce from "@/hooks/useLocalStorageOnce";
 
 const opensans = Open_Sans({ subsets: ["latin"] });
 

@@ -55,7 +55,7 @@ export default function RedistributionNotice({ dialogRef }) {
               La documentation technique et la documentation sur l&apos;ajout
               d&apos;un talk est disponible&nbsp;
               <a
-                href="https://docs.google.com/document/d/1FMLZWCNmCYxix0cRr0Ars0UnaZvoQQpRdRNnXGIzKOo/edit?usp=sharing"
+                href={process.env.NEXT_PUBLIC_DOCUMENTATION_URL}
                 target="_blank"
                 title="Lien vers la documentation de TheZaurus"
                 rel="noopener"
@@ -65,7 +65,7 @@ export default function RedistributionNotice({ dialogRef }) {
               . Vous pouvez également accéder directement au formulaire
               d&apos;ajout en cliquant sur&nbsp;
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfF99AC8fEKcXXF6z-gZMeCCtSGyUvQYxjO03Z1SkP2k3yNrg/viewform"
+                href={process.env.NEXT_PUBLIC_CONTRIBUTE_URL}
                 target="_blank"
                 title="Lien vers le formulaire d'ajout"
                 rel="noopener"

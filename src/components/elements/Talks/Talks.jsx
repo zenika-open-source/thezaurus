@@ -1,4 +1,3 @@
-import { Nunito } from "next/font/google";
 import Filter from "../Filter/Filter";
 import { useEffect, useReducer, useState } from "react";
 import { fetchTalks } from "./Talks.api";
@@ -96,7 +95,7 @@ function Talks() {
           <a
             className="button-primary"
             title="ajouter un talk"
-            href={`${process.env.NEXT_PUBLIC_CONTRIBUTE_URL}`}
+            href={process.env.NEXT_PUBLIC_CONTRIBUTE_URL}
             target="_blank"
             rel="noopener"
           >
